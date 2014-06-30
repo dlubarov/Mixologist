@@ -38,7 +38,7 @@ public class RecipeData {
                     R.drawable.aviation, "Dana Robinson"),
 
             new Recipe("Bacardi",
-                    Arrays.asList("4.5 cl Bacardi rum white", "2 cl lime juice", "1 cl Grenadine"),
+                    Arrays.asList("4.5 cl Bacardi rum white", "2 cl lime juice", "1 cl grenadine"),
                     Arrays.asList(Category.RUM),
                     Arrays.asList(
                             "Pour all ingredients into shaker with ice cubes.",
@@ -389,7 +389,7 @@ public class RecipeData {
 
             new Recipe("Mary Pickford",
                     Arrays.asList("6 cl white rum", "1 cl Maraschino", "6 cl pineapple juice",
-                            "1 cl Grenadine syrup"),
+                            "1 cl grenadine syrup"),
                     Arrays.asList(Category.RUM),
                     Arrays.asList("Shake and strain into a chilled large cocktail glass."),
                     R.drawable.mary_pickford, "Vince Keenan"),
@@ -423,7 +423,7 @@ public class RecipeData {
                     R.drawable.mojito, "janineomg (flickr)"),
 
             new Recipe("Monkey Gland",
-                    Arrays.asList("5 cl gin", "3 cl orange juice", "2 drops absinthe", "2 drops Grenadine"),
+                    Arrays.asList("5 cl gin", "3 cl orange juice", "2 drops absinthe", "2 drops grenadine"),
                     Arrays.asList(Category.GIN, Category.ABSINTHE),
                     Arrays.asList("Shake and strain into a chilled cocktail glass."),
                     R.drawable.monkey_gland, "Reese Lloyd (flickr)"),
@@ -485,7 +485,7 @@ public class RecipeData {
 
             new Recipe("Planter's Punch",
                     Arrays.asList("4.5 cl dark rum", "3.5 cl orange juice", "3.5 cl pineapple juice",
-                            "2 cl lemon juice", "1 cl Grenadine", "1 cl sugar syrup", "3-4 dashes Angostura bitters"),
+                            "2 cl lemon juice", "1 cl grenadine", "1 cl sugar syrup", "3-4 dashes Angostura bitters"),
                     Arrays.asList(Category.RUM, Category.BITTERS),
                     Arrays.asList(
                             "Pour all ingredients, except the bitters, into shaker filled with ice.",
@@ -612,7 +612,7 @@ public class RecipeData {
                     R.drawable.stinger, "Kenn Wilson (flickr)"),
 
             new Recipe("Tequila Sunrise",
-                    Arrays.asList("4.5 cl Tequila", "9 cl orange juice", "1.5 cl Grenadine"),
+                    Arrays.asList("4.5 cl Tequila", "9 cl orange juice", "1.5 cl grenadine"),
                     Arrays.asList(Category.TEQUILA),
                     Arrays.asList(
                             "Pour tequila and orange juice directly into highball with ice cubes.",
