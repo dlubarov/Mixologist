@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.mixologist"
-          android:versionCode="1"
-          android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19"/>
+          package="com.example.mixologist">
     <application
-            android:theme="@android:style/Theme.Light"
+            android:theme="@style/Theme.AppCompat.Light"
             android:label="@string/app_name"
             android:icon="@drawable/launcher_icon"
             android:allowBackup="true">
@@ -15,7 +12,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".BrowseRecipesActivity"/>
+        <activity android:name=".BrowseCategoryActivity"/>
         <activity android:name=".ViewRecipeActivity"/>
     </application>
 </manifest>

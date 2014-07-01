@@ -22,7 +22,7 @@ public class BrowseCategoriesActivity extends Activity {
         categoryList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(BrowseCategoriesActivity.this, BrowseRecipesActivity.class)
+                Intent intent = new Intent(BrowseCategoriesActivity.this, BrowseCategoryActivity.class)
                         .putExtra("category", Category.values()[position]);
                 startActivity(intent);
             }
