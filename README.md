@@ -6,7 +6,6 @@ TODO: Write a readme.
 ## TODO
 
 - Test on more devices
-- Replace title bar with action bar
 - Favorites
 
 

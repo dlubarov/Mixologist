@@ -1,10 +1,12 @@
-package com.example.mixologist;
+package com.lubarov.daniel.mixologist;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RecipeData {
-    private static final Recipe[] ALL_RECIPES = new Recipe[] {
+    public static final List<Recipe> ALL_RECIPES = Arrays.asList(
             new Recipe("Alexander",
                     Arrays.asList("3 cl cognac", "3 cl créme de cacao (brown)", "3 cl cream"),
                     Arrays.asList(Category.BRANDY, Category.CHOCOLATE),
@@ -111,7 +113,7 @@ public class RecipeData {
 
             new Recipe("Caipirinha",
                     Arrays.asList("5 cl Cachaca", "half lime cut into 4 wedges", "2 teaspoon sugar"),
-                    Arrays.<Category>asList(),
+                    Arrays.asList(Category.FRUIT_LIQUEUR),
                     Arrays.asList(
                             "Place lime and suger in old fashion glass and muddle.",
                             "Fill glass with ice and Cachaca."),
@@ -677,11 +679,22 @@ public class RecipeData {
                     Arrays.asList("3 cl white rum", "1.5 cl Galliano", "1.5 cl triple sec", "1.5 cl lime juice"),
                     Arrays.asList(Category.RUM, Category.FRUIT_LIQUEUR),
                     Arrays.asList("Shake and strain into a chilled cocktail glass."),
-                    R.drawable.yellow_bird, "queenkv (flickr)"),
-    };
+                    R.drawable.yellow_bird, "queenkv (flickr)")
+    );
 
-    public static List<Recipe> getAll() {
-        return Arrays.asList(ALL_RECIPES);
+    private static final Map<String, Recipe> RECIPES_BY_NAME;
+
+    static {
+        RECIPES_BY_NAME = new HashMap<>();
+        for (Recipe recipe : ALL_RECIPES)
+            RECIPES_BY_NAME.put(recipe.getName(), recipe);
+    }
+
+    public static Recipe getByName(String name) {
+        Recipe recipe = RECIPES_BY_NAME.get(name);
+        if (recipe == null)
+            throw new IllegalArgumentException("No such recipe: " + name);
+        return recipe;
     }
 
     private RecipeData() {}

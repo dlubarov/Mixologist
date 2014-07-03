@@ -1,4 +1,4 @@
-package com.example.mixologist;
+package com.lubarov.daniel.mixologist;
 
 /**
  * A recipe category.

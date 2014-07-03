@@ -1,4 +1,4 @@
-package com.example.mixologist;
+package com.lubarov.daniel.mixologist;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;

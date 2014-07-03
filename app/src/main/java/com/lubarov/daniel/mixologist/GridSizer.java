@@ -1,4 +1,4 @@
-package com.example.mixologist;
+package com.lubarov.daniel.mixologist;
 
 import android.util.DisplayMetrics;
 import android.view.WindowManager;

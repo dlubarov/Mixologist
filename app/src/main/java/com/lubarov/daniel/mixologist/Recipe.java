@@ -1,4 +1,4 @@
-package com.example.mixologist;
+package com.lubarov.daniel.mixologist;
 
 import android.os.Parcel;
 import android.os.Parcelable;
