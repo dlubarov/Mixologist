@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,7 +27,10 @@ public class ViewRecipeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.view_recipe, container, false);
+        View view = inflater.inflate(R.layout.view_recipe_fragment, container, false);
+
+        TextView titleView = (TextView) view.findViewById(R.id.title);
+        titleView.setText(recipe.getName());
 
         ImageView imageView = (ImageView) view.findViewById(R.id.recipe_photo);
         imageView.setImageResource(recipe.getImageResource());
@@ -48,7 +49,25 @@ public class ViewRecipeFragment extends Fragment {
         TextView stepsView = (TextView) view.findViewById(R.id.steps);
         stepsView.setText(Html.fromHtml(getStepsHtml(recipe.getSteps())));
 
+        setHasOptionsMenu(true);
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.view_recipe_actions, menu);
+        MenuItem favoriteItem = menu.findItem(R.id.favorite);
+//        favoriteItem.setIcon()
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.favorite:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private static String getIngredientsHtml(List<String> ingredients) {

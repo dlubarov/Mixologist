@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import com.lubarov.daniel.mixologist.storage.FavoritesStorage;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
 public class BrowseFavoritesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.browse_recipes, container, false);
+        View view = inflater.inflate(R.layout.browse_recipes_fragment, container, false);
 
         GridView recipeGrid = (GridView) view.findViewById(R.id.recipes);
         recipeGrid.setNumColumns(GridSizer.getDesiredNumCols(getActivity().getWindowManager()));

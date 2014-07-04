@@ -1,7 +1,9 @@
-package com.lubarov.daniel.mixologist;
+package com.lubarov.daniel.mixologist.storage;
 
 import android.content.Context;
 import android.database.Cursor;
+import com.lubarov.daniel.mixologist.Recipe;
+import com.lubarov.daniel.mixologist.RecipeData;
 
 import java.util.ArrayList;
 import java.util.List;

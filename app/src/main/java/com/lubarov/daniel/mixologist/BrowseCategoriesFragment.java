@@ -15,7 +15,7 @@ import android.widget.ListView;
 public class BrowseCategoriesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.browse_categories, container, false);
+        View view = inflater.inflate(R.layout.browse_categories_fragment, container, false);
 
         ListView categoryList = (ListView) view.findViewById(R.id.categories);
         categoryList.setAdapter(new ArrayAdapter<>(getActivity(),

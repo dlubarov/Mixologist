@@ -1,6 +1,10 @@
 package com.lubarov.daniel.mixologist;
 
+import android.app.SearchManager;
+import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
@@ -11,6 +15,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +34,11 @@ public class TheActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.root_layout);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final ActionBar actionBar = getSupportActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setDisplayShowTitleEnabled(true);
+
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
 
         viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -40,12 +48,9 @@ public class TheActivity extends ActionBarActivity {
 
             @Override
             public int getCount() {
-                return 2;
+                return fragments.size();
             }
         });
-
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setDisplayShowTitleEnabled(true);
 
         ActionBar.TabListener tabListener = new ActionBar.TabListener() {
             @Override
@@ -77,9 +82,7 @@ public class TheActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        ContainerFragment fragment = fragments.get(viewPager.getCurrentItem());
-        if (!fragment.popFragment())
+        if (!getFocusedContainer().popFragment())
             super.onBackPressed();
     }
 
@@ -87,8 +90,49 @@ public class TheActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.global_actions, menu);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
-        SearchViewConfigurer.configure(this, searchView);
+        final MenuItem menuItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
+            @Override
+            public boolean onSuggestionSelect(int i) {
+                return false;
+            }
+
+            @Override
+            public boolean onSuggestionClick(int i) {
+                Recipe recipe = RecipeData.ALL_RECIPES.get(getSuggestion(i));
+                getFocusedContainer().replaceFragment(new ViewRecipeFragment(recipe), true);
+                MenuItemCompat.collapseActionView(menuItem);
+                return true;
+            }
+
+            int getSuggestion(int position) {
+                Cursor cursor = (Cursor) searchView.getSuggestionsAdapter().getItem(position);
+                return cursor.getInt(cursor.getColumnIndex(BaseColumns._ID));
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                getFocusedContainer().replaceFragment(new ViewSearchResultsFragment(query), true);
+                MenuItemCompat.collapseActionView(menuItem);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    private ContainerFragment getFocusedContainer() {
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        return fragments.get(viewPager.getCurrentItem());
     }
 }

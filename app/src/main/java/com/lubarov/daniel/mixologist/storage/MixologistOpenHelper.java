@@ -1,4 +1,4 @@
-package com.lubarov.daniel.mixologist;
+package com.lubarov.daniel.mixologist.storage;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,6 +9,7 @@ public class MixologistOpenHelper extends SQLiteOpenHelper {
     private static MixologistOpenHelper singleton;
 
     private static final String CREATE_TABLE_FAVORITES = "CREATE TABLE favorites (name TEXT PRIMARY KEY);";
+    private static final String CREATE_TABLE_COUNTERS = "CREATE TABLE counters (name TEXT PRIMARY KEY, count INTEGER);";
 
     private MixologistOpenHelper(Context context) {
         super(context, "mixologist", null, DATABASE_VERSION);
@@ -23,6 +24,7 @@ public class MixologistOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_FAVORITES);
+        db.execSQL(CREATE_TABLE_COUNTERS);
     }
 
     @Override

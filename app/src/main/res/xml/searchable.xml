@@ -4,5 +4,4 @@
         android:label="@string/app_name"
         android:hint="Search recipes"
         android:searchSuggestAuthority="com.lubarov.daniel.mixologist.RecipeContentProvider"
-        android:searchSuggestIntentAction="android.intent.action.VIEW"
         android:searchSuggestThreshold="1" />
