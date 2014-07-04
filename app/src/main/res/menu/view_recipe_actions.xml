@@ -3,6 +3,5 @@
       xmlns:mixologist="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/favorite"
           android:title="Favorite"
-          android:icon="@drawable/ic_action_favorite"
           mixologist:showAsAction="always" />
 </menu>

@@ -7,6 +7,8 @@ import android.util.DisplayMetrics;
 import android.view.*;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.lubarov.daniel.mixologist.activity.TheActivity;
+import com.lubarov.daniel.mixologist.storage.FavoritesStorage;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class ViewRecipeFragment extends Fragment {
     private static final double MAX_PHOTO_HEIGHT = 0.50;
 
     private final Recipe recipe;
+    private MenuItem favoriteButton;
 
     public ViewRecipeFragment(Recipe recipe) {
         this.recipe = recipe;
@@ -56,14 +59,20 @@ public class ViewRecipeFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.view_recipe_actions, menu);
-        MenuItem favoriteItem = menu.findItem(R.id.favorite);
-//        favoriteItem.setIcon()
+        favoriteButton = menu.findItem(R.id.favorite);
+        updateFavoriteIcon();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.favorite:
+                if (FavoritesStorage.isInFavorites(getActivity(), recipe))
+                    FavoritesStorage.removeFromFavorites(getActivity(), recipe);
+                else
+                    FavoritesStorage.addToFavorites(getActivity(), recipe);
+                updateFavoriteIcon();
+                ((TheActivity) getActivity()).notifyDataSetChanged();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -89,5 +98,12 @@ public class ViewRecipeFragment extends Fragment {
             html.append(number++).append(". ").append(ingredient);
         }
         return html.toString();
+    }
+
+    private void updateFavoriteIcon() {
+        int resId = FavoritesStorage.isInFavorites(getActivity(), recipe)
+                ? R.drawable.btn_star_on_normal_holo_light
+                : R.drawable.btn_star_off_normal_holo_light;
+        favoriteButton.setIcon(resId);
     }
 }

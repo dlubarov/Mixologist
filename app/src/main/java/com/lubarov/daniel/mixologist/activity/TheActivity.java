@@ -1,4 +1,4 @@
-package com.lubarov.daniel.mixologist;
+package com.lubarov.daniel.mixologist.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -6,9 +6,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -16,17 +16,24 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import com.lubarov.daniel.mixologist.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TheActivity extends ActionBarActivity {
     private final List<ContainerFragment> fragments;
+    private PagerAdapter pagerAdapter;
 
     public TheActivity() {
         fragments = new ArrayList<>();
         fragments.add(new ContainerFragment(new BrowseCategoriesFragment()));
         fragments.add(new ContainerFragment(new BrowseFavoritesFragment()));
+    }
+
+    public void notifyDataSetChanged() {
+        pagerAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -39,27 +46,32 @@ public class TheActivity extends ActionBarActivity {
         actionBar.setDisplayShowTitleEnabled(true);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager.setAdapter(pagerAdapter = new ThePagerAdapter(getSupportFragmentManager(), fragments));
 
-        viewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
-            @Override
-            public Fragment getItem(int position) {
-                return fragments.get(position);
-            }
-
-            @Override
-            public int getCount() {
-                return fragments.size();
-            }
-        });
-
+        final AtomicBoolean created = new AtomicBoolean();
         ActionBar.TabListener tabListener = new ActionBar.TabListener() {
             @Override
             public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+                // Hack to work around https://code.google.com/p/android/issues/detail?id=19203
+                if (created.get()) {
+                    ContainerFragment container = fragments.get(tab.getPosition());
+                    for (Fragment fragment : container.getChildFragmentManager().getFragments())
+                        if (fragment != null && fragment.isVisible())
+                            fragment.setMenuVisibility(true);
+                }
                 viewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
-            public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
+            public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+                // Hack to work around https://code.google.com/p/android/issues/detail?id=19203
+                if (created.get()) {
+                    ContainerFragment container = fragments.get(tab.getPosition());
+                    for (Fragment fragment : container.getChildFragmentManager().getFragments())
+                        if (fragment != null && fragment.isVisible())
+                            fragment.setMenuVisibility(false);
+                }
+            }
 
             @Override
             public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
@@ -78,6 +90,8 @@ public class TheActivity extends ActionBarActivity {
                 actionBar.setSelectedNavigationItem(position);
             }
         });
+
+        created.set(true);
     }
 
     @Override
