@@ -451,7 +451,7 @@ public class RecipeData {
             new Recipe("Old Fashioned",
                     Arrays.asList("4.5 cl bourbon or rye whisky", "2 dashes Angostura bitters", "1 sugar cube",
                             "Few dashes plain water"),
-                    Arrays.asList(Category.BOURBON, Category.BITTERS),
+                    Arrays.asList(Category.WHISKY, Category.BITTERS),
                     Arrays.asList(
                             "Place sugar cube in old-fashioned glass and saturate with bitters.",
                             "Add a dash of plain water.",
@@ -661,7 +661,7 @@ public class RecipeData {
             new Recipe("Whisky Sour",
                     Arrays.asList("4.5 cl bourbon whisky", "3.0 cl lemon juice", "1.5 cl sugar syrup",
                             "dash egg white (optional)"),
-                    Arrays.asList(Category.BOURBON),
+                    Arrays.asList(Category.WHISKY),
                     Arrays.asList(
                             "Shake with ice.",
                             "Strain into ice-filled old-fashioned glass."),

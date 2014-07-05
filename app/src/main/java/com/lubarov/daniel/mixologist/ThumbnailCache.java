@@ -4,7 +4,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.util.Log;
 
 import java.util.WeakHashMap;
 
@@ -25,8 +24,6 @@ public class ThumbnailCache {
 
     private static Bitmap createThumbnail(Resources resources, int resourceId) {
         Bitmap originalBitmap = BitmapFactory.decodeResource(resources, resourceId);
-        Log.i("ThumbnailCache", String.format(
-                "Original: w=%d, h=%d", originalBitmap.getWidth(), originalBitmap.getHeight()));
         int minDimension = Math.min(originalBitmap.getWidth(), originalBitmap.getHeight());
         int trimX = originalBitmap.getWidth() - minDimension;
         int trimY = originalBitmap.getHeight() - minDimension;
@@ -42,8 +39,6 @@ public class ThumbnailCache {
                 originalBitmap.getWidth() - trimX,
                 originalBitmap.getHeight() - trimY,
                 matrix, true);
-        Log.i("ThumbnailCache", String.format(
-                "Modified: w=%d, h=%d", croppedAndScaledBitmap.getWidth(), croppedAndScaledBitmap.getHeight()));
         originalBitmap.recycle();
         return croppedAndScaledBitmap;
     }

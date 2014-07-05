@@ -7,25 +7,23 @@ import android.view.WindowManager;
  * Utilities for displaying recipes in a grid.
  */
 public final class GridSizer {
-    private static final int DESIRED_RECIPES_IN_SCREEN = 10;
+    private static final double DESIRED_RECIPE_SIZE_INCHES = 1.2;
 
     private GridSizer() {}
 
     public static int getDesiredNumCols(WindowManager windowManager) {
-        DisplayMetrics dm = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(dm);
+        double desiredRecipeWidthInches = DESIRED_RECIPE_SIZE_INCHES; //Math.sqrt(desiredRecipeArea);
 
-        double displayWidthInches = dm.widthPixels / dm.xdpi;
-        double displayHeightInches = dm.heightPixels / dm.xdpi;
-        double displayAreaSquareInches = displayWidthInches * displayHeightInches;
+        int numCols = (int) Math.round(getDisplayWidthInches(windowManager) / desiredRecipeWidthInches);
 
-        double desiredRecipeArea = displayAreaSquareInches / DESIRED_RECIPES_IN_SCREEN;
-        double desiredRecipeWidthInches = Math.sqrt(desiredRecipeArea);
+        // Just as a sanity check, we want at least 2 columns, and no more than 4.
+        numCols = Math.max(numCols, 2);
+        numCols = Math.min(numCols, 4);
 
-        return (int) Math.round(getScreenSizeInches(windowManager) / desiredRecipeWidthInches);
+        return numCols;
     }
 
-    private static double getScreenSizeInches(WindowManager windowManager) {
+    private static double getDisplayWidthInches(WindowManager windowManager) {
         DisplayMetrics dm = new DisplayMetrics();
         windowManager.getDefaultDisplay().getMetrics(dm);
         return dm.widthPixels / dm.xdpi;
