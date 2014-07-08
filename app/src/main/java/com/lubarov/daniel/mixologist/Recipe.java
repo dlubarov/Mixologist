@@ -65,6 +65,16 @@ public class Recipe implements Parcelable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        return o instanceof Recipe && name.equals(((Recipe) o).name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
+
+    @Override
     public String toString() {
         return name;
     }

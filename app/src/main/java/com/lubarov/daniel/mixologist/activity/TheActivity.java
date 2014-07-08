@@ -8,7 +8,6 @@ import android.provider.BaseColumns;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -24,16 +23,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TheActivity extends ActionBarActivity {
     private final List<ContainerFragment> fragments;
-    private PagerAdapter pagerAdapter;
 
     public TheActivity() {
         fragments = new ArrayList<>();
         fragments.add(new ContainerFragment(new BrowseCategoriesFragment()));
         fragments.add(new ContainerFragment(new BrowseFavoritesFragment()));
-    }
-
-    public void notifyDataSetChanged() {
-        pagerAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -46,7 +40,7 @@ public class TheActivity extends ActionBarActivity {
         actionBar.setDisplayShowTitleEnabled(true);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        viewPager.setAdapter(pagerAdapter = new ThePagerAdapter(getSupportFragmentManager(), fragments));
+        viewPager.setAdapter(new ThePagerAdapter(getSupportFragmentManager(), fragments));
 
         final AtomicBoolean created = new AtomicBoolean();
         ActionBar.TabListener tabListener = new ActionBar.TabListener() {

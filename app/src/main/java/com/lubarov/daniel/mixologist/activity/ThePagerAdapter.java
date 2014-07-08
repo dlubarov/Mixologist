@@ -24,11 +24,4 @@ public class ThePagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return fragments.size();
     }
-
-    // A hack for refreshing views when tabs are changed. Inefficient but good enough for now.
-    // See http://stackoverflow.com/a/7287121/714009
-    @Override
-    public int getItemPosition(Object object) {
-        return POSITION_NONE;
-    }
 }

@@ -5,7 +5,6 @@ package com.lubarov.daniel.mixologist;
  */
 public enum Category {
     ABSINTHE("Absinthe"),
-    BITTERS("Bitters"),
     BRANDY("Brandy"),
     CHOCOLATE("Chocolate"),
     COFFEE("Coffee"),

@@ -7,7 +7,8 @@ import android.util.DisplayMetrics;
 import android.view.*;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.lubarov.daniel.mixologist.activity.TheActivity;
+import com.lubarov.daniel.mixologist.events.EventListener;
+import com.lubarov.daniel.mixologist.events.FavoriteEvent;
 import com.lubarov.daniel.mixologist.storage.FavoritesStorage;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * An activity for viewing a particular recipe.
  */
-public class ViewRecipeFragment extends Fragment {
+public class ViewRecipeFragment extends Fragment implements EventListener<FavoriteEvent> {
     /**
      * The max height of the photo, as a fraction of the display's height.
      */
@@ -53,6 +54,8 @@ public class ViewRecipeFragment extends Fragment {
         stepsView.setText(Html.fromHtml(getStepsHtml(recipe.getSteps())));
 
         setHasOptionsMenu(true);
+
+        FavoriteEvent.MANAGER.addListener(this);
         return view;
     }
 
@@ -67,16 +70,22 @@ public class ViewRecipeFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.favorite:
-                if (FavoritesStorage.isInFavorites(getActivity(), recipe))
+                boolean wasFavorite = FavoritesStorage.isInFavorites(getActivity(), recipe);
+                if (wasFavorite)
                     FavoritesStorage.removeFromFavorites(getActivity(), recipe);
                 else
                     FavoritesStorage.addToFavorites(getActivity(), recipe);
-                updateFavoriteIcon();
-                ((TheActivity) getActivity()).notifyDataSetChanged();
+                FavoriteEvent.MANAGER.notifyAll(new FavoriteEvent(recipe, !wasFavorite));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void consume(FavoriteEvent event) {
+        if (event.getRecipe().equals(recipe))
+            updateFavoriteIcon(event.isFavorite());
     }
 
     private static String getIngredientsHtml(List<String> ingredients) {
@@ -101,7 +110,11 @@ public class ViewRecipeFragment extends Fragment {
     }
 
     private void updateFavoriteIcon() {
-        int resId = FavoritesStorage.isInFavorites(getActivity(), recipe)
+        updateFavoriteIcon(FavoritesStorage.isInFavorites(getActivity(), recipe));
+    }
+
+    private void updateFavoriteIcon(boolean isFavorite) {
+        int resId = isFavorite
                 ? R.drawable.btn_star_on_normal_holo_light
                 : R.drawable.btn_star_off_normal_holo_light;
         favoriteButton.setIcon(resId);
