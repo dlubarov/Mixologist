@@ -1,4 +1,4 @@
-package com.lubarov.daniel.mixologist;
+package com.lubarov.daniel.mixologist.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.lubarov.daniel.mixologist.R;
+import com.lubarov.daniel.mixologist.model.Recipe;
+import com.lubarov.daniel.mixologist.model.RecipeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,13 +37,13 @@ public class ViewSearchResultsFragment extends Fragment {
             messageView.setText("No recipes found.");
         } else {
             messageView.setText(String.format("Results for \"%s\":", query));
-            resultsView.setAdapter(new ArrayAdapter<Recipe>(getActivity(),
+            resultsView.setAdapter(new ArrayAdapter<>(getActivity(),
                     android.R.layout.simple_list_item_1, matchingRecipes));
             resultsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ((ContainerFragment) getParentFragment()).replaceFragment(
-                            new ViewRecipeFragment(matchingRecipes.get(position)), true);
+                    ((ContainerFragment) getParentFragment()).pushFragment(
+                            new ViewRecipeFragment(matchingRecipes.get(position)));
                 }
             });
         }

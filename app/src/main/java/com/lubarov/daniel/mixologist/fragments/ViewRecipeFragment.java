@@ -1,4 +1,4 @@
-package com.lubarov.daniel.mixologist;
+package com.lubarov.daniel.mixologist.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,8 +7,10 @@ import android.util.DisplayMetrics;
 import android.view.*;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.events.EventListener;
 import com.lubarov.daniel.mixologist.events.FavoriteEvent;
+import com.lubarov.daniel.mixologist.model.Recipe;
 import com.lubarov.daniel.mixologist.storage.FavoritesStorage;
 
 import java.util.List;
@@ -48,7 +50,7 @@ public class ViewRecipeFragment extends Fragment implements EventListener<Favori
         else
             attributionView.setVisibility(View.GONE);
         TextView ingredientsView = (TextView) view.findViewById(R.id.ingredients);
-        ingredientsView.setText(Html.fromHtml(getIngredientsHtml(recipe.getIngredients())));
+        ingredientsView.setText(Html.fromHtml(getIngredientsHtml(recipe.getIngredientDescriptions())));
 
         TextView stepsView = (TextView) view.findViewById(R.id.steps);
         stepsView.setText(Html.fromHtml(getStepsHtml(recipe.getSteps())));

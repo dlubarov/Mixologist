@@ -1,6 +1,6 @@
 package com.lubarov.daniel.mixologist.events;
 
-import com.lubarov.daniel.mixologist.Recipe;
+import com.lubarov.daniel.mixologist.model.Recipe;
 
 /**
  * A recipe was added to or removed from the favorites.

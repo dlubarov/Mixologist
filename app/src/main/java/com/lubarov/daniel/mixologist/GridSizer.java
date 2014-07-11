@@ -12,9 +12,7 @@ public final class GridSizer {
     private GridSizer() {}
 
     public static int getDesiredNumCols(WindowManager windowManager) {
-        double desiredRecipeWidthInches = DESIRED_RECIPE_SIZE_INCHES; //Math.sqrt(desiredRecipeArea);
-
-        int numCols = (int) Math.round(getDisplayWidthInches(windowManager) / desiredRecipeWidthInches);
+        int numCols = (int) Math.round(getDisplayWidthInches(windowManager) / DESIRED_RECIPE_SIZE_INCHES);
 
         // Just as a sanity check, we want at least 2 columns, and no more than 4.
         numCols = Math.max(numCols, 2);

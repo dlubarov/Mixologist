@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.BaseColumns;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -15,7 +14,10 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import com.lubarov.daniel.mixologist.*;
+import com.lubarov.daniel.mixologist.R;
+import com.lubarov.daniel.mixologist.fragments.*;
+import com.lubarov.daniel.mixologist.model.Recipe;
+import com.lubarov.daniel.mixologist.model.RecipeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,8 @@ public class TheActivity extends ActionBarActivity {
 
     public TheActivity() {
         fragments = new ArrayList<>();
-        fragments.add(new ContainerFragment(new BrowseCategoriesFragment()));
+        fragments.add(new ContainerFragment(new ManageInventoryFragment()));
+        fragments.add(new ContainerFragment(new AvailableRecipesFragment()));
         fragments.add(new ContainerFragment(new BrowseFavoritesFragment()));
     }
 
@@ -46,37 +49,29 @@ public class TheActivity extends ActionBarActivity {
         ActionBar.TabListener tabListener = new ActionBar.TabListener() {
             @Override
             public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-                // Hack to work around https://code.google.com/p/android/issues/detail?id=19203
-                if (created.get()) {
-                    ContainerFragment container = fragments.get(tab.getPosition());
-                    for (Fragment fragment : container.getChildFragmentManager().getFragments())
-                        if (fragment != null && fragment.isVisible())
-                            fragment.setMenuVisibility(true);
-                }
+                ContainerFragment container = fragments.get(tab.getPosition());
+                container.getTopFragment().setMenuVisibility(true);
                 viewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-                // Hack to work around https://code.google.com/p/android/issues/detail?id=19203
-                if (created.get()) {
-                    ContainerFragment container = fragments.get(tab.getPosition());
-                    for (Fragment fragment : container.getChildFragmentManager().getFragments())
-                        if (fragment != null && fragment.isVisible())
-                            fragment.setMenuVisibility(false);
-                }
+                ContainerFragment container = fragments.get(tab.getPosition());
+                container.getTopFragment().setMenuVisibility(false);
             }
 
             @Override
             public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
         };
 
-        ActionBar.Tab categoriesTab = actionBar.newTab().setText("Categories").setTabListener(tabListener);
+        ActionBar.Tab inventoryTab = actionBar.newTab().setText("Inventory").setTabListener(tabListener);
+        ActionBar.Tab availableRecipesTab = actionBar.newTab().setText("Recipes").setTabListener(tabListener);
         ActionBar.Tab favoritesTab = actionBar.newTab().setText("Favorites").setTabListener(tabListener);
 
-        actionBar.addTab(categoriesTab);
+        actionBar.addTab(inventoryTab);
+        actionBar.addTab(availableRecipesTab);
         actionBar.addTab(favoritesTab);
-        actionBar.selectTab(categoriesTab);
+        actionBar.selectTab(inventoryTab);
 
         viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
@@ -112,7 +107,7 @@ public class TheActivity extends ActionBarActivity {
             @Override
             public boolean onSuggestionClick(int i) {
                 Recipe recipe = RecipeData.ALL_RECIPES.get(getSuggestion(i));
-                getFocusedContainer().replaceFragment(new ViewRecipeFragment(recipe), true);
+                getFocusedContainer().pushFragment(new ViewRecipeFragment(recipe));
                 MenuItemCompat.collapseActionView(menuItem);
                 return true;
             }
@@ -126,7 +121,7 @@ public class TheActivity extends ActionBarActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                getFocusedContainer().replaceFragment(new ViewSearchResultsFragment(query), true);
+                getFocusedContainer().pushFragment(new ViewSearchResultsFragment(query));
                 MenuItemCompat.collapseActionView(menuItem);
                 return true;
             }

@@ -3,7 +3,7 @@ package com.lubarov.daniel.mixologist.activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import com.lubarov.daniel.mixologist.ContainerFragment;
+import com.lubarov.daniel.mixologist.fragments.ContainerFragment;
 
 import java.util.List;
 

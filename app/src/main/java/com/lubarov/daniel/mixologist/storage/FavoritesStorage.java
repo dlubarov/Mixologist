@@ -4,8 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import com.lubarov.daniel.mixologist.Recipe;
-import com.lubarov.daniel.mixologist.RecipeData;
+import com.lubarov.daniel.mixologist.model.Recipe;
+import com.lubarov.daniel.mixologist.model.RecipeData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,7 @@ import java.util.List;
 public class FavoritesStorage {
     private FavoritesStorage() {}
 
+    // TODO: cache similar to InventoryStorage
     public static boolean isInFavorites(Context context, Recipe recipe) {
         SQLiteDatabase database = MixologistOpenHelper.getSingleton(context).getReadableDatabase();
         Cursor cursor = database.rawQuery(
@@ -38,9 +39,9 @@ public class FavoritesStorage {
 
     public static void addToFavorites(Context context, Recipe recipe) {
         SQLiteDatabase database = MixologistOpenHelper.getSingleton(context).getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("name", recipe.getName());
-        database.insert("favorites", null, contentValues);
+        ContentValues values = new ContentValues();
+        values.put("name", recipe.getName());
+        database.insert("favorites", null, values);
     }
 
     public static void removeFromFavorites(Context context, Recipe recipe) {

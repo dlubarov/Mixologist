@@ -10,6 +10,7 @@ public class MixologistOpenHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_FAVORITES = "CREATE TABLE favorites (name TEXT PRIMARY KEY);";
     private static final String CREATE_TABLE_COUNTERS = "CREATE TABLE counters (name TEXT PRIMARY KEY, count INTEGER);";
+    private static final String CREATE_TABLE_INGREDIENTS = "CREATE TABLE ingredients (name TEXT PRIMARY KEY);";
 
     private MixologistOpenHelper(Context context) {
         super(context, "mixologist", null, DATABASE_VERSION);
@@ -25,6 +26,7 @@ public class MixologistOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_FAVORITES);
         db.execSQL(CREATE_TABLE_COUNTERS);
+        db.execSQL(CREATE_TABLE_INGREDIENTS);
     }
 
     @Override

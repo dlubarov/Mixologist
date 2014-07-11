@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import com.lubarov.daniel.mixologist.model.Recipe;
+import com.lubarov.daniel.mixologist.model.RecipeData;
 
 public class RecipeContentProvider extends ContentProvider {
     private static final int MAX_RESULTS = 5;
