@@ -16,6 +16,7 @@ import com.lubarov.daniel.mixologist.events.EventListener;
 import com.lubarov.daniel.mixologist.events.IngredientEvent;
 import com.lubarov.daniel.mixologist.model.Ingredient;
 import com.lubarov.daniel.mixologist.model.Recipe;
+import com.lubarov.daniel.mixologist.model.RecipeComparator;
 import com.lubarov.daniel.mixologist.model.RecipeData;
 import com.lubarov.daniel.mixologist.storage.IngredientStorage;
 

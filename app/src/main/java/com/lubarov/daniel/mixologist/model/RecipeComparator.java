@@ -1,7 +1,4 @@
-package com.lubarov.daniel.mixologist.fragments;
-
-import com.lubarov.daniel.mixologist.model.Ingredient;
-import com.lubarov.daniel.mixologist.model.Recipe;
+package com.lubarov.daniel.mixologist.model;
 
 import java.util.Comparator;
 import java.util.Set;

@@ -15,6 +15,9 @@ import com.lubarov.daniel.mixologist.events.FavoriteEvent;
 import com.lubarov.daniel.mixologist.model.Recipe;
 import com.lubarov.daniel.mixologist.storage.FavoritesStorage;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -30,7 +33,14 @@ public class BrowseFavoritesFragment extends Fragment implements EventListener<F
         GridView recipeGrid = (GridView) view.findViewById(R.id.recipes);
         recipeGrid.setNumColumns(GridSizer.getDesiredNumCols(getActivity().getWindowManager()));
 
-        final List<Recipe> recipesToDisplay = FavoritesStorage.getAllFavorites(getActivity());
+        final List<Recipe> recipesToDisplay = new ArrayList<>(FavoritesStorage.getAllFavorites(getActivity()));
+        Collections.sort(recipesToDisplay, new Comparator<Recipe>() {
+            @Override
+            public int compare(Recipe a, Recipe b) {
+                return a.getName().compareTo(b.getName());
+            }
+        });
+
         recipeGrid.setAdapter(adapter = new RecipeButtonAdapter(getActivity(), recipesToDisplay));
         recipeGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

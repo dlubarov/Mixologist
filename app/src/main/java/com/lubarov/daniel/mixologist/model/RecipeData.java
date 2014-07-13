@@ -21,14 +21,14 @@ public class RecipeData {
                     Arrays.asList("3 cl Campari", "3 cl red vermouth", "A splash of soda water"),
                     Arrays.asList(Ingredient.CAMPARI, Ingredient.SWEET_RED_VERMOUTH, Ingredient.SODA_WATER),
                     Arrays.asList(
-                            "Mix the ingredients directly in an old-fashioned glass filled with ice-cubes.",
+                            "Mix the ingredients directly in an old fashioned glass filled with ice cubes.",
                             "Add a splash of soda water.",
-                            "Garnish with half orange slice."),
+                            "Garnish with half an orange slice."),
                     R.drawable.americano, "Conrad and Peter"),
 
             new Recipe("Angel Face",
                     // TODO: Calvados OR Applejack
-                    Arrays.asList("3 cl gin", "3 cl Apricot brandy", "3 cl Calvados, or Applejack"),
+                    Arrays.asList("3 cl gin", "3 cl Apricot brandy", "3 cl Calvados or Applejack"),
                     Arrays.asList(Ingredient.GIN, Ingredient.BRANDY, Ingredient.CALVADOS),
                     Arrays.asList(
                             "Pour all ingredients into a shaker with ice.",

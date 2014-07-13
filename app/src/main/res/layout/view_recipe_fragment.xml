@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
+<ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="16dp">
-    <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@android:style/TextAppearance.Large" />
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@android:style/TextAppearance.Large" />
 
-    <ImageView
-            android:id="@+id/recipe_photo"
-            android:layout_marginTop="20dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:layout_gravity="top"
-            android:src="@drawable/lemonade"
-            android:contentDescription="photograph"/>
-    <TextView
-            android:id="@+id/photo_attribution"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Image by John Doe"
-            android:gravity="center"
-            android:textSize="10sp"/>
+        <ImageView
+                android:id="@+id/recipe_photo"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:layout_gravity="top"
+                android:src="@drawable/lemonade"
+                android:contentDescription="photograph"/>
+        <TextView
+                android:id="@+id/photo_attribution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="10sp"/>
 
-    <TextView
-            android:layout_marginTop="20dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Ingredients"
-            style="@android:style/TextAppearance.Medium" />
-    <TextView
-            android:id="@+id/ingredients"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Foo\nBar"
-            style="@android:style/TextAppearance.Small" />
+        <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingredients"
+                style="@android:style/TextAppearance.Medium" />
+        <TextView
+                android:id="@+id/ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@android:style/TextAppearance.Small" />
 
-    <TextView
-            android:layout_marginTop="20dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Directions"
-            style="@android:style/TextAppearance.Medium" />
-    <TextView
-            android:id="@+id/steps"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Step 1\nStep 2"
-            style="@android:style/TextAppearance.Small" />
-</LinearLayout>
+        <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Instructions"
+                style="@android:style/TextAppearance.Medium" />
+        <TextView
+                android:id="@+id/steps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@android:style/TextAppearance.Small" />
+    </LinearLayout>
+</ScrollView>

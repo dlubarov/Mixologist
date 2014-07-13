@@ -12,6 +12,8 @@ import java.util.Set;
 public class IngredientStorage {
     private static Set<Ingredient> cache;
 
+    private IngredientStorage() {}
+
     public static synchronized boolean isIngredientInStock(Context context, Ingredient ingredient) {
         init(context);
         return cache.contains(ingredient);
@@ -45,6 +47,7 @@ public class IngredientStorage {
             Cursor cursor = database.rawQuery("SELECT name FROM ingredients;", new String[0]);
             while (cursor.moveToNext())
                 cache.add(Ingredient.valueOf(cursor.getString(0)));
+            cursor.close();
         }
     }
 }
