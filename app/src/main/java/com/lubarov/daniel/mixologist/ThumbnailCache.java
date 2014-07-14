@@ -8,27 +8,30 @@ import android.graphics.Matrix;
 import java.util.WeakHashMap;
 
 public class ThumbnailCache {
-    private static final int MAX_THUMBNAIL_SIZE_PIXELS = 300;
-    private static final WeakHashMap<Integer, Bitmap> thumbnailsByResourceId;
+    public static final ThumbnailCache LARGE = new ThumbnailCache(160);
 
-    static {
+    private final int maxThumbnailSizePixels;
+    private final WeakHashMap<Integer, Bitmap> thumbnailsByResourceId;
+
+    private ThumbnailCache(int maxThumbnailSizePixels) {
+        this.maxThumbnailSizePixels = maxThumbnailSizePixels;
         thumbnailsByResourceId = new WeakHashMap<>();
     }
 
-    public static synchronized Bitmap getThumbnail(Resources resources, int resourceId) {
+    public synchronized Bitmap getThumbnail(Resources resources, int resourceId) {
         Bitmap thumbnail = thumbnailsByResourceId.get(resourceId);
         if (thumbnail == null)
             thumbnailsByResourceId.put(resourceId, thumbnail = createThumbnail(resources, resourceId));
         return thumbnail;
     }
 
-    private static Bitmap createThumbnail(Resources resources, int resourceId) {
+    private Bitmap createThumbnail(Resources resources, int resourceId) {
         Bitmap originalBitmap = BitmapFactory.decodeResource(resources, resourceId);
         int minDimension = Math.min(originalBitmap.getWidth(), originalBitmap.getHeight());
         int trimX = originalBitmap.getWidth() - minDimension;
         int trimY = originalBitmap.getHeight() - minDimension;
 
-        float scaleFactor = Math.min(MAX_THUMBNAIL_SIZE_PIXELS / (float) minDimension, 1f);
+        float scaleFactor = Math.min(maxThumbnailSizePixels / (float) minDimension, 1f);
         Matrix matrix = new Matrix();
         matrix.postScale(scaleFactor, scaleFactor);
 

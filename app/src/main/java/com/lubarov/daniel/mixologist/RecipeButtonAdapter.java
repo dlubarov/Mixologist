@@ -28,7 +28,7 @@ public class RecipeButtonAdapter extends ArrayAdapter<Recipe> {
                 setText(recipe.getName());
                 setGravity(Gravity.BOTTOM | Gravity.RIGHT);
                 setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
-                Bitmap thumbnail = ThumbnailCache.getThumbnail(getResources(), recipe.getImageResource());
+                Bitmap thumbnail = ThumbnailCache.LARGE.getThumbnail(getResources(), recipe.getImageResource());
                 setBackgroundDrawable(new BitmapDrawable(getResources(), thumbnail));
                 setTextColor(0xFFFFFFFF);
                 setShadowLayer(2f, 0f, 0f, 0xFF000000);

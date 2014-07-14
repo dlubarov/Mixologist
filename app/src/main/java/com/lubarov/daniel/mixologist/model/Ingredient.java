@@ -11,11 +11,11 @@ public enum Ingredient {
     ABSINTHE("absinthe", "Absinthe", "absinth", "absynthe", "absenta", "absinth"),
 
     // Bitters
-    ANGOSTURA_BITTERS("angostura bitters", "Angostura Bitters"),
+    ANGOSTURA_BITTERS("Angostura bitters", "Angostura Bitters"),
     ORANGE_BITTERS("orange bitters", "Orange Bitters"),
     PEACH_BITTERS("peach bitters", "Peach Bitters"),
-    PEYCHAUDS_BITTERS("peychaud's bitters", "Peychaud's Bitters"),
-    CAMPARI("campari", "Campari", "bitters"),
+    PEYCHAUDS_BITTERS("peychaud's Bitters", "Peychaud's Bitters"),
+    CAMPARI("Campari", "Campari", "bitters"),
 
     BRANDY("brandy", "Brandy"),
     PISCO("pisco", "Pisco", "brandy"),

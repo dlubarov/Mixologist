@@ -30,7 +30,7 @@ public class ViewSearchResultsFragment extends Fragment {
         TextView messageView = (TextView) view.findViewById(R.id.message);
         ListView resultsView = (ListView) view.findViewById(R.id.results);
 
-        // TODO: Display query in a TextView
+        // TODO: Display query in a TextView, or in title?
 
         final List<Recipe> matchingRecipes = getMatchingRecipes();
         if (matchingRecipes.isEmpty()) {

@@ -304,11 +304,12 @@ public class RecipeData {
                     R.drawable.harvey_wallbanger, "Steven Labinski"),
 
             new Recipe("Hemingway Special",
-                    Arrays.asList("6 cl white rum", "4 cl Grapefruit juice", "1.5 cl maraschino", "1.5 cl lime juice"),
+                    Arrays.asList("6 cl white rum", "4 cl grapefruit juice", "1.5 cl maraschino", "1.5 cl lime juice"),
                     Arrays.asList(Ingredient.WHITE_RUM, Ingredient.GRAPEFRUITS, Ingredient.MARASCHINO,
                             Ingredient.LIMES),
                     Arrays.asList(
-                            "Pour all ingredients into a shaker with ice. Shake.",
+                            "Pour all ingredients into a shaker with ice.",
+                            "Shake.",
                             "Strain into a double cocktail glass."),
                     R.drawable.hemingway_special, "Simon Leong"),
 
@@ -564,12 +565,12 @@ public class RecipeData {
                     R.drawable.rusty_nail, "Reese Lloyd (flickr)"),
 
             new Recipe("Sazerac",
-                    Arrays.asList("5 cl cognac", "1 cl absinthe", "1 sugar cube", "2 dashes Peychaud's bitters"),
+                    Arrays.asList("5 cl cognac", "1 cl absinthe", "1 sugar cube", "2 dashes Peychaud's Bitters"),
                     Arrays.asList(Ingredient.COGNAC, Ingredient.ABSINTHE, Ingredient.SUGAR_SYRUP,
                             Ingredient.PEYCHAUDS_BITTERS),
                     Arrays.asList(
                             // TODO: Needs more clarity.
-                            "Rinse a chilled old-fashioned glass with the absinthe, add crushed ice and set it aside.",
+                            "Rinse a chilled old fashioned glass with the absinthe, add crushed ice and set it aside.",
                             "Stir the remaining ingredients over ice and set it aside.",
                             "Discard the ice and any excess absinthe from the prepared glass, and strain the drink into the glass.",
                             "Add the lemon peel for garnish."),
@@ -589,7 +590,6 @@ public class RecipeData {
                     Arrays.asList(Ingredient.VODKA, Ingredient.CRANBERRIES, Ingredient.GRAPEFRUITS),
                     Arrays.asList(
                             "Build all ingredients in a rock glass filled with ice.",
-                            // TODO: stir?
                             "Garnish with lime wedge."),
                     R.drawable.sea_breeze, "Måns Sandström (flickr)"),
 
@@ -599,7 +599,6 @@ public class RecipeData {
                             Ingredient.ORANGES),
                     Arrays.asList(
                             "Build all ingredients in a highball glass filled with ice.",
-                            // TODO: stir?
                             "Garnish with orange slice."),
                     R.drawable.sex_on_the_beach, "Robyn Lee (flickr)"),
 

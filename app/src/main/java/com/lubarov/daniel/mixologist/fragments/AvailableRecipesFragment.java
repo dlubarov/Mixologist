@@ -1,17 +1,17 @@
 package com.lubarov.daniel.mixologist.fragments;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.*;
 import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.RecipeSearcher;
+import com.lubarov.daniel.mixologist.ThumbnailCache;
 import com.lubarov.daniel.mixologist.events.EventListener;
 import com.lubarov.daniel.mixologist.events.IngredientEvent;
 import com.lubarov.daniel.mixologist.model.Ingredient;
@@ -22,6 +22,9 @@ import com.lubarov.daniel.mixologist.storage.IngredientStorage;
 
 import java.util.*;
 
+/**
+ * Browse all recipes, ordered starting with the ones that can be made with available ingredients.
+ */
 public class AvailableRecipesFragment extends Fragment implements EventListener<IngredientEvent> {
     private TextView introView;
 
@@ -34,7 +37,6 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
 
         ListView recipesView = (ListView) view.findViewById(R.id.recipes);
         final Adapter adapter = new Adapter();
-        adapter.sort();
 
         recipesView.setAdapter(adapter);
         recipesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -68,24 +70,28 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
         final Map<Recipe, View> recipeViews;
 
         Adapter() {
-            super(getActivity(), android.R.layout.simple_list_item_2, android.R.id.text1,
+            super(getActivity(), R.layout.list_item_2_with_icon, R.id.text1,
                     new ArrayList<>(RecipeData.ALL_RECIPES));
             recipeViews = new HashMap<>();
+            sort();
             IngredientEvent.MANAGER.addListener(this);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            Recipe recipe = getItem(position);
             View view = super.getView(position, convertView, parent);
+            Recipe recipe = getItem(position);
             updateRecipeView(recipe, view);
             recipeViews.put(recipe, view);
             return view;
         }
 
         private void updateRecipeView(Recipe recipe, View view) {
-            TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-            TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+            ImageView imageView = (ImageView) view.findViewById(R.id.thumbnail);
+            Bitmap thumbnail = ThumbnailCache.LARGE.getThumbnail(getResources(), recipe.getImageResource());
+            imageView.setImageDrawable(new BitmapDrawable(getResources(), thumbnail));
+            TextView text1 = (TextView) view.findViewById(R.id.text1);
+            TextView text2 = (TextView) view.findViewById(R.id.text2);
 
             Set<Ingredient> missingIngredients = recipe.getMissingIngredients(
                     IngredientStorage.getAllIngredientsInStock(getActivity()));
