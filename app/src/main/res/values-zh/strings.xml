@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">搜索</string>
+    <string name="instructions">说明</string>
+    <string name="ingredients">成分</string>
+    <string name="photograph">照片</string>
+    <string name="favorite">最喜爱</string>
+</resources>

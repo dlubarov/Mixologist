@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.lubarov.daniel.mixologist.R;
+import com.lubarov.daniel.mixologist.activity.ContainerFragment;
 import com.lubarov.daniel.mixologist.model.Recipe;
 import com.lubarov.daniel.mixologist.model.RecipeData;
 
@@ -17,14 +18,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewSearchResultsFragment extends Fragment {
-    private final String query;
+    private String query;
 
-    public ViewSearchResultsFragment(String query) {
-        this.query = query;
+    public static ViewSearchResultsFragment create(String query) {
+        Bundle args = new Bundle();
+        args.putString("query", query);
+        ViewSearchResultsFragment viewSearchResultsFragment = new ViewSearchResultsFragment();
+        viewSearchResultsFragment.setArguments(args);
+        return viewSearchResultsFragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        query = getArguments().getString("query");
         View view = inflater.inflate(R.layout.search_results_fragment, container, false);
 
         TextView messageView = (TextView) view.findViewById(R.id.message);
@@ -43,7 +49,7 @@ public class ViewSearchResultsFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     ((ContainerFragment) getParentFragment()).pushFragment(
-                            new ViewRecipeFragment(matchingRecipes.get(position)));
+                            ViewRecipeFragment.create(matchingRecipes.get(position)));
                 }
             });
         }

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Mixologist</string>
+    <string name="app_name" translatable="false">Mixologist</string>
+    <string name="search">Search</string>
+    <string name="instructions">Instructions</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="photograph">Photograph</string>
+    <string name="favorite">Favorite</string>
 </resources>

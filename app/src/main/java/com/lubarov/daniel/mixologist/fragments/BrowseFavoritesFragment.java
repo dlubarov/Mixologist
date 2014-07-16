@@ -10,6 +10,7 @@ import android.widget.GridView;
 import com.lubarov.daniel.mixologist.GridSizer;
 import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.RecipeButtonAdapter;
+import com.lubarov.daniel.mixologist.activity.ContainerFragment;
 import com.lubarov.daniel.mixologist.events.EventListener;
 import com.lubarov.daniel.mixologist.events.FavoriteEvent;
 import com.lubarov.daniel.mixologist.model.Recipe;
@@ -46,7 +47,7 @@ public class BrowseFavoritesFragment extends Fragment implements EventListener<F
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ((ContainerFragment) getParentFragment()).pushFragment(
-                        new ViewRecipeFragment(recipesToDisplay.get(position)));
+                        ViewRecipeFragment.create(recipesToDisplay.get(position)));
             }
         });
 

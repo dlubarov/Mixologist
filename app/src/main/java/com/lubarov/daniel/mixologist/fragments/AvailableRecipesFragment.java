@@ -12,6 +12,7 @@ import android.widget.*;
 import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.RecipeSearcher;
 import com.lubarov.daniel.mixologist.ThumbnailCache;
+import com.lubarov.daniel.mixologist.activity.ContainerFragment;
 import com.lubarov.daniel.mixologist.events.EventListener;
 import com.lubarov.daniel.mixologist.events.IngredientEvent;
 import com.lubarov.daniel.mixologist.model.Ingredient;
@@ -43,7 +44,7 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ((ContainerFragment) getParentFragment()).pushFragment(
-                        new ViewRecipeFragment(adapter.getItem(position)));
+                        ViewRecipeFragment.create(adapter.getItem(position)));
             }
         });
 
@@ -98,7 +99,7 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
 
             text1.setText(recipe.getName());
             if (missingIngredients.isEmpty()) {
-                text2.setText(toCommaSeparatedList(recipe.getIngredients()));
+                text2.setText(toCommaSeparatedList(recipe.getRequiredIngredients()));
                 text2.setTextColor(Color.BLACK);
             } else {
                 text2.setText("missing " + toCommaSeparatedList(missingIngredients));

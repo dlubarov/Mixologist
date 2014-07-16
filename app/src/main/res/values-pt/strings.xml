@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">Pesquisa</string>
+    <string name="instructions">Instruções</string>
+    <string name="ingredients">Ingredientes</string>
+    <string name="photograph">Fotografia</string>
+    <string name="favorite">Favorito</string>
+</resources>

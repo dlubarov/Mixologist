@@ -91,6 +91,7 @@ public enum Ingredient {
     OLIVES("olives", "Olives / Olive Juice"),
     GRAPEFRUITS("grapefruits", "Grapefruits / Grapefruit Juice"),
     ONIONS("onions", "Onions"),
+    MARASCHINO_CHERRIES("maraschino cherries", "Maraschino Mherries"),
 
     // Sugars/syrups
     SUGAR_SYRUP("sugar", "Sugar / Sugar Syrup", "simple"),
@@ -116,12 +117,12 @@ public enum Ingredient {
     SALT("salt", "Salt"),
     CELERY_SALT("celery salt", "Celery Salt"),
     PEPPER("pepper", "Pepper"),
+    NUTMEG("nutmeg", "Nutmeg"),
     ;
 
     private final String shortName;
     private final String longName;
     private final Set<String> keywords;
-    private Set<Ingredient> children;
 
     Ingredient(String shortName, String longName, String... keywords) {
         this.shortName = shortName;

@@ -22,7 +22,7 @@
                 android:adjustViewBounds="true"
                 android:layout_gravity="top"
                 android:src="@drawable/lemonade"
-                android:contentDescription="photograph"/>
+                android:contentDescription="@string/photograph"/>
         <TextView
                 android:id="@+id/photo_attribution"
                 android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ingredients"
+                android:text="@string/ingredients"
                 style="@android:style/TextAppearance.Medium" />
         <TextView
                 android:id="@+id/ingredients"
@@ -46,7 +46,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Instructions"
+                android:text="@string/instructions"
                 style="@android:style/TextAppearance.Medium" />
         <TextView
                 android:id="@+id/steps"

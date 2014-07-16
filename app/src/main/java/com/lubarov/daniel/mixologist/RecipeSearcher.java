@@ -20,7 +20,7 @@ public class RecipeSearcher {
         for (Ingredient ingredient : Ingredient.values())
             recipesByIngredient.put(ingredient, new HashSet<Recipe>());
         for (Recipe recipe : RecipeData.ALL_RECIPES)
-            for (Ingredient ingredient : recipe.getIngredients())
+            for (Ingredient ingredient : recipe.getRequiredIngredients())
                 recipesByIngredient.get(ingredient).add(recipe);
     }
 

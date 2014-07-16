@@ -14,7 +14,8 @@ import java.util.Set;
 public class Recipe implements Parcelable {
     private final String name;
     private final List<String> ingredientDescriptions;
-    private final List<Ingredient> ingredients;
+    private final List<Ingredient> requiredIngredients;
+    private final List<Ingredient> garnishIngredients;
     private final List<String> steps;
     private final int imageResource;
     private final String imageAttribution;
@@ -23,7 +24,7 @@ public class Recipe implements Parcelable {
         @Override
         public Recipe createFromParcel(Parcel in) {
             return new Recipe(in.readString(), in.createStringArrayList(), fromNames(in.createStringArrayList()),
-                    in.createStringArrayList(), in.readInt(), in.readString());
+                    fromNames(in.createStringArrayList()), in.createStringArrayList(), in.readInt(), in.readString());
         }
 
         @Override
@@ -32,11 +33,12 @@ public class Recipe implements Parcelable {
         }
     };
 
-    public Recipe(String name, List<String> ingredientDescriptions, List<Ingredient> ingredients, List<String> steps,
-                  int imageResource, String imageAttribution) {
+    public Recipe(String name, List<String> ingredientDescriptions, List<Ingredient> requiredIngredients,
+          List<Ingredient> garnishIngredients, List<String> steps, int imageResource, String imageAttribution) {
         this.name = name;
         this.ingredientDescriptions = ingredientDescriptions;
-        this.ingredients = ingredients;
+        this.requiredIngredients = requiredIngredients;
+        this.garnishIngredients = garnishIngredients;
         this.steps = steps;
         this.imageResource = imageResource;
         this.imageAttribution = imageAttribution;
@@ -50,8 +52,12 @@ public class Recipe implements Parcelable {
         return ingredientDescriptions;
     }
 
-    public List<Ingredient> getIngredients() {
-        return ingredients;
+    public List<Ingredient> getRequiredIngredients() {
+        return requiredIngredients;
+    }
+
+    public List<Ingredient> getGarnishIngredients() {
+        return garnishIngredients;
     }
 
     public List<String> getSteps() {
@@ -67,7 +73,7 @@ public class Recipe implements Parcelable {
     }
 
     public Set<Ingredient> getMissingIngredients(Set<Ingredient> availableIngredients) {
-        Set<Ingredient> missingIngredients = new HashSet<>(ingredients);
+        Set<Ingredient> missingIngredients = new HashSet<>(requiredIngredients);
         missingIngredients.removeAll(availableIngredients);
         return missingIngredients;
     }
@@ -96,7 +102,7 @@ public class Recipe implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeStringList(ingredientDescriptions);
-        dest.writeStringList(toNames(ingredients));
+        dest.writeStringList(toNames(requiredIngredients));
         dest.writeStringList(steps);
         dest.writeInt(imageResource);
         dest.writeString(imageAttribution);

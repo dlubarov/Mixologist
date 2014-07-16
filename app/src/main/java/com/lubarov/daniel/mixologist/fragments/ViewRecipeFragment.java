@@ -24,15 +24,20 @@ public class ViewRecipeFragment extends Fragment implements EventListener<Favori
      */
     private static final double MAX_PHOTO_HEIGHT = 0.50;
 
-    private final Recipe recipe;
+    private Recipe recipe;
     private MenuItem favoriteButton;
 
-    public ViewRecipeFragment(Recipe recipe) {
-        this.recipe = recipe;
+    public static ViewRecipeFragment create(Recipe recipe) {
+        Bundle args = new Bundle();
+        args.putParcelable("recipe", recipe);
+        ViewRecipeFragment viewRecipeFragment = new ViewRecipeFragment();
+        viewRecipeFragment.setArguments(args);
+        return viewRecipeFragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        recipe = getArguments().getParcelable("recipe");
         View view = inflater.inflate(R.layout.view_recipe_fragment, container, false);
 
         TextView titleView = (TextView) view.findViewById(R.id.title);

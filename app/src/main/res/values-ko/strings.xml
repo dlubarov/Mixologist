@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search">수색</string>
+    <string name="instructions">명령</string>
+    <string name="ingredients">성분</string>
+    <string name="photograph">사진</string>
+    <string name="favorite">마음에 드는</string>
+</resources>
