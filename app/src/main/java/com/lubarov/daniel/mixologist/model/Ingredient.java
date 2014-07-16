@@ -91,7 +91,7 @@ public enum Ingredient {
     OLIVES("olives", "Olives / Olive Juice"),
     GRAPEFRUITS("grapefruits", "Grapefruits / Grapefruit Juice"),
     ONIONS("onions", "Onions"),
-    MARASCHINO_CHERRIES("maraschino cherries", "Maraschino Mherries"),
+    MARASCHINO_CHERRIES("maraschino cherries", "Maraschino Cherries"),
 
     // Sugars/syrups
     SUGAR_SYRUP("sugar", "Sugar / Sugar Syrup", "simple"),

@@ -429,7 +429,7 @@ public class RecipeData {
             new Recipe("Manhattan",
                     Arrays.asList("5 cl rye whisky", "2 cl red vermouth", "1 dash Angostura bitters"),
                     Arrays.asList(Ingredient.RYE_WHISKY, Ingredient.SWEET_RED_VERMOUTH, Ingredient.ANGOSTURA_BITTERS),
-                    Arrays.<Ingredient>asList(), // TODO: cocktail cherry?
+                    Arrays.<Ingredient>asList(Ingredient.MARASCHINO_CHERRIES),
                     Arrays.asList(
                             "Pour all ingredients into mixing glass with ice cubes.",
                             "Stir well.",
@@ -521,7 +521,7 @@ public class RecipeData {
                             "few dashes plain water"),
                     // TODO: bourbon OR rye
                     Arrays.asList(Ingredient.BOURBON_WHISKY, Ingredient.ANGOSTURA_BITTERS, Ingredient.SUGAR_SYRUP),
-                    Arrays.<Ingredient>asList(Ingredient.ORANGES), // TODO: cocktail cherry
+                    Arrays.asList(Ingredient.ORANGES, Ingredient.MARASCHINO_CHERRIES),
                     Arrays.asList(
                             "Place sugar cube in old-fashioned glass and saturate with bitters.",
                             "Add a dash of plain water.",
@@ -542,7 +542,7 @@ public class RecipeData {
             new Recipe("Pina Colada",
                     Arrays.asList("3 cl white rum", "9 cl pineapple juice", "3 cl Coconut milk"),
                     Arrays.asList(Ingredient.WHITE_RUM, Ingredient.PINEAPPLES, Ingredient.MILK),
-                    Arrays.<Ingredient>asList(), // TODO: cocktail cherry
+                    Arrays.asList(Ingredient.MARASCHINO_CHERRIES),
                     Arrays.asList(
                             "Blend all the ingredients with ice in a electric blender.",
                             "Pour into a large goblet or Hurricane glass and serve with straws.",
@@ -563,7 +563,7 @@ public class RecipeData {
                             "2 cl lemon juice", "1 cl grenadine", "1 cl sugar syrup", "3-4 dashes Angostura bitters"),
                     Arrays.asList(Ingredient.DARK_RUM, Ingredient.ORANGES, Ingredient.PINEAPPLES, Ingredient.LEMONS,
                             Ingredient.GRENADINE, Ingredient.SUGAR_SYRUP, Ingredient.ANGOSTURA_BITTERS),
-                    Arrays.<Ingredient>asList(),
+                    Arrays.asList(Ingredient.MARASCHINO_CHERRIES),
                     Arrays.asList(
                             "Pour all ingredients, except the bitters, into shaker filled with ice.",
                             "Shake well.",
@@ -683,7 +683,7 @@ public class RecipeData {
                     Arrays.asList(Ingredient.GIN, Ingredient.CHERRY_LIQUEUR, Ingredient.TRIPLE_SEC,
                             Ingredient.BENEDICTINE, Ingredient.PINEAPPLES, Ingredient.LIMES, Ingredient.GRENADINE,
                             Ingredient.ANGOSTURA_BITTERS),
-                    Arrays.<Ingredient>asList(),
+                    Arrays.asList(Ingredient.MARASCHINO_CHERRIES),
                     Arrays.asList(
                             "Pour all ingredients into cocktail shaker filled with ice cubes.",
                             "Shake well.",
@@ -694,7 +694,7 @@ public class RecipeData {
             new Recipe("Spritz",
                     Arrays.asList("6 cl Prosecco", "4 cl Aperol", "splash of soda water"),
                     Arrays.asList(Ingredient.SPARKLING_WINE, Ingredient.APEROL, Ingredient.SODA_WATER),
-                    Arrays.<Ingredient>asList(),
+                    Arrays.asList(Ingredient.ORANGES),
                     Arrays.asList(
                             "Build into an old-fashioned glass filled with ice.",
                             "Top with a splash of soda water.",
@@ -713,7 +713,7 @@ public class RecipeData {
             new Recipe("Tequila Sunrise",
                     Arrays.asList("4.5 cl tequila", "9 cl orange juice", "1.5 cl grenadine"),
                     Arrays.asList(Ingredient.TEQUILA, Ingredient.ORANGES, Ingredient.GRENADINE),
-                    Arrays.<Ingredient>asList(),
+                    Arrays.asList(Ingredient.MARASCHINO_CHERRIES),
                     Arrays.asList(
                             "Pour tequila and orange juice directly into highball with ice cubes.",
                             "Add a splash of grenadine to create chromatic effect (sunrise); do not stir.",
@@ -732,7 +732,7 @@ public class RecipeData {
                             "1/4 bar spoon absinthe", "3 dashes orange bitters"),
                     Arrays.asList(Ingredient.GIN, Ingredient.DRY_VERMOUTH, Ingredient.MARASCHINO,
                             Ingredient.ABSINTHE, Ingredient.ORANGE_BITTERS),
-                    Arrays.<Ingredient>asList(),
+                    Arrays.<Ingredient>asList(Ingredient.MARASCHINO_CHERRIES, Ingredient.LEMONS),
                     Arrays.asList(
                             "Stir all ingredients with ice and strain into cocktail glass.",
                             "Garnish with a cocktail cherry and a lemon zest twist."),
