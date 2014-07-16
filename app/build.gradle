@@ -25,6 +25,27 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+
+    signingConfigs {
+        debug {
+            storeFile file("debug.keystore")
+        }
+
+        release {
+            storeFile file("/Users/dlubarov/dlubarov.jks")
+            storePassword new String(System.console().readPassword("\nEnter keystore password: "))
+            keyAlias "dlubarov"
+            keyPassword new String(System.console().readPassword("\nEnter key password: "))
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            debuggable false
+            zipAlign true
+        }
+    }
 }
 
 dependencies {
