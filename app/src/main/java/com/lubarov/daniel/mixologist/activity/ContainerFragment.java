@@ -37,7 +37,6 @@ public class ContainerFragment extends Fragment {
         }
 
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-//        Log.e("test", String.format("activity=%s, container=%s, content=%s", getActivity(), this, initialContent)); // TODO
         transaction.replace(R.id.container_framelayout, initialContent);
         transaction.commit();
     }
@@ -52,18 +51,4 @@ public class ContainerFragment extends Fragment {
     public boolean popFragment() {
         return getChildFragmentManager().popBackStackImmediate();
     }
-
-    // TODO
-//    @Override
-//    public void onDetach() {
-//        // See http://stackoverflow.com/a/15656428/714009
-//        super.onDetach();
-//        try {
-//            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
-//            childFragmentManager.setAccessible(true);
-//            childFragmentManager.set(this, null);
-//        } catch (NoSuchFieldException | IllegalAccessException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
 }

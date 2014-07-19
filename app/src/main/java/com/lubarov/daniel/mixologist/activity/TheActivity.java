@@ -90,7 +90,6 @@ public class TheActivity extends ActionBarActivity {
     @Override
     public void onResume() {
         super.onResume();
-//        Log.e("test", "activity=" + this); // TODO
         if (NagDecider.shouldNag(this))
             new ReviewDialogFragment().show(getSupportFragmentManager(), "rate");
     }
