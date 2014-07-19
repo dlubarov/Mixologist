@@ -11,6 +11,7 @@ import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.events.EventListener;
 import com.lubarov.daniel.mixologist.events.FavoriteEvent;
 import com.lubarov.daniel.mixologist.model.Recipe;
+import com.lubarov.daniel.mixologist.storage.CountersStorage;
 import com.lubarov.daniel.mixologist.storage.FavoritesStorage;
 
 import java.util.List;
@@ -61,6 +62,8 @@ public class ViewRecipeFragment extends Fragment implements EventListener<Favori
         stepsView.setText(Html.fromHtml(getStepsHtml(recipe.getSteps())));
 
         setHasOptionsMenu(true);
+
+        CountersStorage.incrementCounter(getActivity(), "recipes_viewed");
 
         FavoriteEvent.MANAGER.addListener(this);
         return view;

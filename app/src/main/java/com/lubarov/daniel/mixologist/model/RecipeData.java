@@ -203,7 +203,7 @@ public class RecipeData {
             new Recipe("Dark 'n' Stormy",
                     Arrays.asList("6 cl dark rum", "10 cl ginger beer"),
                     Arrays.asList(Ingredient.DARK_RUM, Ingredient.GINGER_BEER),
-                    Arrays.<Ingredient>asList(Ingredient.LIMES),
+                    Arrays.asList(Ingredient.LIMES),
                     Arrays.asList(
                             "In a highball glass filled with ice, add the rum and top with ginger beer.",
                             "Garnish with lime wedge."),
@@ -262,7 +262,7 @@ public class RecipeData {
             new Recipe("French Martini",
                     Arrays.asList("4.5 cl vodka", "1.5 cl raspberry liqueur", "1.5 cl pineapple juice"),
                     Arrays.asList(Ingredient.VODKA, Ingredient.RASPBERRY_LIQUEUR, Ingredient.PINEAPPLES),
-                    Arrays.<Ingredient>asList(Ingredient.LEMONS),
+                    Arrays.asList(Ingredient.LEMONS),
                     Arrays.asList(
                             "Pour all ingredients into mixing glass with ice cubes. Stir well.",
                             "Strain in chilled cocktail glass.",
@@ -330,7 +330,7 @@ public class RecipeData {
             new Recipe("Harvey Wallbanger",
                     Arrays.asList("4.5 cl vodka", "1.5 cl Galliano (to float on drink)", "9 cl orange juice"),
                     Arrays.asList(Ingredient.VODKA, Ingredient.GALLIANO, Ingredient.ORANGES),
-                    Arrays.<Ingredient>asList(), // TODO: cherry
+                    Arrays.asList(Ingredient.MARASCHINO_CHERRIES),
                     Arrays.asList(
                             "Pour vodka and orange juice into a highball glass filled with ice.",
                             "Stir gently and float Galliano on top. Garnish with orange slices and cherry."),
@@ -350,7 +350,7 @@ public class RecipeData {
             new Recipe("Horse's Neck",
                     Arrays.asList("4 cl brandy", "12 cl ginger ale", "dash of Angostura bitters (optional)"),
                     Arrays.asList(Ingredient.BRANDY, Ingredient.GINGER_ALE),
-                    Arrays.<Ingredient>asList(Ingredient.LEMONS),
+                    Arrays.asList(Ingredient.LEMONS),
                     Arrays.asList(
                             "Pour brandy and ginger ale directly into highball glass with ice cubes.",
                             "Stir gently.",
@@ -429,7 +429,7 @@ public class RecipeData {
             new Recipe("Manhattan",
                     Arrays.asList("5 cl rye whisky", "2 cl red vermouth", "1 dash Angostura bitters"),
                     Arrays.asList(Ingredient.RYE_WHISKY, Ingredient.SWEET_RED_VERMOUTH, Ingredient.ANGOSTURA_BITTERS),
-                    Arrays.<Ingredient>asList(Ingredient.MARASCHINO_CHERRIES),
+                    Arrays.asList(Ingredient.MARASCHINO_CHERRIES),
                     Arrays.asList(
                             "Pour all ingredients into mixing glass with ice cubes.",
                             "Stir well.",
@@ -480,7 +480,7 @@ public class RecipeData {
                             "2 teaspoons white sugar", "soda water"),
                     Arrays.asList(Ingredient.WHITE_RUM, Ingredient.LIMES, Ingredient.MINT_LEAVES,
                             Ingredient.SUGAR_SYRUP, Ingredient.SODA_WATER),
-                    Arrays.<Ingredient>asList(Ingredient.LEMONS),
+                    Arrays.asList(Ingredient.LEMONS),
                     Arrays.asList(
                             "Muddle mint springs with sugar and lime juice.",
                             "Add splash of soda water and fill glass with cracked ice.",
@@ -509,7 +509,7 @@ public class RecipeData {
             new Recipe("Negroni",
                     Arrays.asList("3 cl gin", "3 cl Campari", "3 cl sweet red vermouth"),
                     Arrays.asList(Ingredient.GIN, Ingredient.CAMPARI, Ingredient.SWEET_RED_VERMOUTH),
-                    Arrays.<Ingredient>asList(Ingredient.ORANGES),
+                    Arrays.asList(Ingredient.ORANGES),
                     Arrays.asList(
                             "Pour all ingredients directly into old-fashioned glass filled with ice.",
                             "Stir gently.",
@@ -550,9 +550,9 @@ public class RecipeData {
                     R.drawable.pina_colada, "Ruben I (flickr)"),
 
             new Recipe("Pisco Sour",
-                    Arrays.asList("4.5 cl pisco", "3 cl lemon juice", "2 cl sugar syrup", "1 raw egg white"), // TODO: add bitters?
-                    Arrays.asList(Ingredient.PISCO, Ingredient.LEMONS, Ingredient.SUGAR_SYRUP, Ingredient.EGGS), // TODO: add bitters?
-                    Arrays.<Ingredient>asList(),
+                    Arrays.asList("4.5 cl pisco", "3 cl lemon juice", "2 cl sugar syrup", "1 raw egg white"),
+                    Arrays.asList(Ingredient.PISCO, Ingredient.LEMONS, Ingredient.SUGAR_SYRUP, Ingredient.EGGS),
+                    Arrays.asList(Ingredient.ANGOSTURA_BITTERS),
                     Arrays.asList(
                             "Shake and strain into a chilled champagne flute.",
                             "Dash some Angostura bitters on top."),
@@ -629,13 +629,12 @@ public class RecipeData {
                     Arrays.asList("5 cl cognac", "1 cl absinthe", "1 sugar cube", "2 dashes Peychaud's Bitters"),
                     Arrays.asList(Ingredient.COGNAC, Ingredient.ABSINTHE, Ingredient.SUGAR_SYRUP,
                             Ingredient.PEYCHAUDS_BITTERS),
-                    Arrays.<Ingredient>asList(),
+                    Arrays.asList(Ingredient.LEMONS),
                     Arrays.asList(
-                            // TODO: Needs more clarity.
                             "Rinse a chilled old fashioned glass with the absinthe, add crushed ice and set it aside.",
-                            "Stir the remaining ingredients over ice and set it aside.",
-                            "Discard the ice and any excess absinthe from the prepared glass, and strain the drink into the glass.",
-                            "Add the lemon peel for garnish."),
+                            "In a separate glass, stir the remaining ingredients over ice. Set it aside.",
+                            "Discard the ice and any excess absinthe from the first glass, and strain the drink into it.",
+                            "Add lemon peel for garnish."),
                     R.drawable.sazerac, "Göran Arvidso (flickr)"),
 
             new Recipe("Screwdriver",
@@ -732,7 +731,7 @@ public class RecipeData {
                             "1/4 bar spoon absinthe", "3 dashes orange bitters"),
                     Arrays.asList(Ingredient.GIN, Ingredient.DRY_VERMOUTH, Ingredient.MARASCHINO,
                             Ingredient.ABSINTHE, Ingredient.ORANGE_BITTERS),
-                    Arrays.<Ingredient>asList(Ingredient.MARASCHINO_CHERRIES, Ingredient.LEMONS),
+                    Arrays.asList(Ingredient.MARASCHINO_CHERRIES, Ingredient.LEMONS),
                     Arrays.asList(
                             "Stir all ingredients with ice and strain into cocktail glass.",
                             "Garnish with a cocktail cherry and a lemon zest twist."),

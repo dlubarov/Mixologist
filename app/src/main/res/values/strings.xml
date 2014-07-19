@@ -6,4 +6,10 @@
     <string name="ingredients">Ingredients</string>
     <string name="photograph">Photograph</string>
     <string name="favorite">Favorite</string>
+
+    <!-- TODO: translate these -->
+    <string name="rate_message" translatable="false">If you like the app, please consider reviewing it in the Play Store.</string>
+    <string name="rate" translatable="false">Rate</string>
+    <string name="later" translatable="false">Later</string>
+    <string name="never" translatable="false">Never</string>
 </resources>

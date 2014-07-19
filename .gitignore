@@ -5,3 +5,6 @@ gen/
 local.properties
 project.properties
 *.apk
+
+# API key is sensitive
+app/crashlytics.properties

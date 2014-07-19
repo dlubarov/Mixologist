@@ -1,6 +1,6 @@
 # Mixologist
 
-TODO: Write a readme.
+This is an Android app for cocktail recipes. Currently it includes just the 77 official IBA recipes.
 
 
 ## Credits

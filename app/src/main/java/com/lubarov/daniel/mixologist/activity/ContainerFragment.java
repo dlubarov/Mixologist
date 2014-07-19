@@ -9,13 +9,6 @@ import android.view.ViewGroup;
 import com.lubarov.daniel.mixologist.R;
 
 public class ContainerFragment extends Fragment {
-//    private final Deque<Fragment> stack;
-
-//    public ContainerFragment(Fragment initialContent) {
-//        this.stack = new LinkedList<>();
-//        stack.add(initialContent);
-//    }
-
     public static ContainerFragment create(Class<? extends Fragment> initialContent) {
         Bundle args = new Bundle();
         args.putSerializable("initial_content_type", initialContent);
@@ -44,12 +37,12 @@ public class ContainerFragment extends Fragment {
         }
 
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+//        Log.e("test", String.format("activity=%s, container=%s, content=%s", getActivity(), this, initialContent)); // TODO
         transaction.replace(R.id.container_framelayout, initialContent);
         transaction.commit();
     }
 
     public void pushFragment(Fragment newContent) {
-//        stack.addLast(newContent);
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.addToBackStack(null);
         transaction.replace(R.id.container_framelayout, newContent);
@@ -57,13 +50,20 @@ public class ContainerFragment extends Fragment {
     }
 
     public boolean popFragment() {
-        if (!getChildFragmentManager().popBackStackImmediate())
-            return false;
-//        stack.pop();
-        return true;
+        return getChildFragmentManager().popBackStackImmediate();
     }
 
-//    public Fragment getTopFragment() {
-//        return stack.getLast();
+    // TODO
+//    @Override
+//    public void onDetach() {
+//        // See http://stackoverflow.com/a/15656428/714009
+//        super.onDetach();
+//        try {
+//            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
+//            childFragmentManager.setAccessible(true);
+//            childFragmentManager.set(this, null);
+//        } catch (NoSuchFieldException | IllegalAccessException e) {
+//            throw new RuntimeException(e);
+//        }
 //    }
 }

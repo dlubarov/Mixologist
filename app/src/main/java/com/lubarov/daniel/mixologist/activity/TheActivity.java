@@ -15,28 +15,24 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import com.crashlytics.android.Crashlytics;
 import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.fragments.*;
 import com.lubarov.daniel.mixologist.model.Recipe;
 import com.lubarov.daniel.mixologist.model.RecipeData;
+import com.lubarov.daniel.mixologist.reviewnagger.NagDecider;
+import com.lubarov.daniel.mixologist.reviewnagger.ReviewDialogFragment;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TheActivity extends ActionBarActivity {
-    private final List<ContainerFragment> fragments;
-
-    public TheActivity() {
-        fragments = new ArrayList<>();
-        fragments.add(ContainerFragment.create(ManageInventoryFragment.class));
-        fragments.add(ContainerFragment.create(AvailableRecipesFragment.class));
-        fragments.add(ContainerFragment.create(BrowseFavoritesFragment.class));
-    }
+    private ThePagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Crashlytics.start(this);
+
         setContentView(R.layout.root_layout);
 
         final ActionBar actionBar = getSupportActionBar();
@@ -44,7 +40,7 @@ public class TheActivity extends ActionBarActivity {
         actionBar.setDisplayShowTitleEnabled(true);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final ThePagerAdapter pagerAdapter = new ThePagerAdapter(getSupportFragmentManager(), fragments);
+        pagerAdapter = new ThePagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
 
         final AtomicBoolean created = new AtomicBoolean();
@@ -53,9 +49,10 @@ public class TheActivity extends ActionBarActivity {
             public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
                 if (created.get()) {
                     ContainerFragment container = (ContainerFragment) pagerAdapter.getItem(tab.getPosition());
-                    for (Fragment child : container.getChildFragmentManager().getFragments())
-                        if (child != null && child.isVisible())
-                            child.setMenuVisibility(true);
+                    if (container.getChildFragmentManager() != null && container.getChildFragmentManager().getFragments() != null)
+                        for (Fragment child : container.getChildFragmentManager().getFragments())
+                            if (child != null && child.isVisible())
+                                child.setMenuVisibility(true);
                 }
 
                 viewPager.setCurrentItem(tab.getPosition());
@@ -65,9 +62,10 @@ public class TheActivity extends ActionBarActivity {
             public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
                 if (created.get()) {
                     ContainerFragment container = (ContainerFragment) pagerAdapter.getItem(tab.getPosition());
-                    for (Fragment child : container.getChildFragmentManager().getFragments())
-                        if (child != null && child.isVisible())
-                            child.setMenuVisibility(false);
+                    if (container.getChildFragmentManager() != null && container.getChildFragmentManager().getFragments() != null)
+                        for (Fragment child : container.getChildFragmentManager().getFragments())
+                            if (child != null && child.isVisible())
+                                child.setMenuVisibility(false);
                 }
             }
 
@@ -87,6 +85,14 @@ public class TheActivity extends ActionBarActivity {
         });
 
         created.set(true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        Log.e("test", "activity=" + this); // TODO
+        if (NagDecider.shouldNag(this))
+            new ReviewDialogFragment().show(getSupportFragmentManager(), "rate");
     }
 
     @Override
@@ -142,6 +148,6 @@ public class TheActivity extends ActionBarActivity {
 
     private ContainerFragment getFocusedContainer() {
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        return fragments.get(viewPager.getCurrentItem());
+        return (ContainerFragment) pagerAdapter.getRegisteredFragment(viewPager.getCurrentItem());
     }
 }

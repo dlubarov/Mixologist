@@ -2,6 +2,8 @@
 <manifest
         xmlns:android="http://schemas.android.com/apk/res/android"
         package="com.lubarov.daniel.mixologist">
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
             android:allowBackup="true"
             android:icon="@drawable/launcher_icon"
@@ -23,5 +25,7 @@
                 android:name="com.lubarov.daniel.mixologist.RecipeContentProvider"
                 android:syncable="false"
                 android:exported="false" />
+
+        <meta-data android:name="com.crashlytics.ApiKey" android:value="196fa1e7cf513b91a12f9e5610fa627c6c231206"/>
     </application>
 </manifest>

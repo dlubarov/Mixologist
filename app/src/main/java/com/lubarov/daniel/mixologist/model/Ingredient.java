@@ -45,9 +45,9 @@ public enum Ingredient {
     BENEDICTINE("Bénédictine", "Bénédictine"),
     APEROL("Aperol", "Aperol"),
 
-    CREME_DE_CACAO("créme de cacao", "Créme de Cacao (Chocolate Liqueur)"),
-    CREME_DE_CASSIS("créme de cassis", "Créme de Cassis (Blackcurrant Liqueur)"),
-    CREME_DE_MENTHE("crème de menthe", "Crème de Menthe (Mint Liqueur)"),
+    CREME_DE_CACAO("créme de cacao", "Créme de Cacao", "chocolate"),
+    CREME_DE_CASSIS("créme de cassis", "Créme de Cassis", "blackcurrant"),
+    CREME_DE_MENTHE("crème de menthe", "Crème de Menthe", "mint"),
 
     GIN("gin", "Gin"),
 

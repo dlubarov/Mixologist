@@ -16,7 +16,7 @@ import com.lubarov.daniel.mixologist.storage.IngredientStorage;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class ManageInventoryFragment extends Fragment {
+public class ManageIngredientsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Ingredient[] allIngredients = Ingredient.values();
