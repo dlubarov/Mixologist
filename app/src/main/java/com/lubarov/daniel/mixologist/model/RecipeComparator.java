@@ -21,6 +21,6 @@ public class RecipeComparator implements Comparator<Recipe> {
             return aMissing - bMissing;
         else
             // As a tie-breaker, sort alphabetically.
-            return a.getName().compareTo(b.getName());
+            return a.getName().compareToIgnoreCase(b.getName());
     }
 }
