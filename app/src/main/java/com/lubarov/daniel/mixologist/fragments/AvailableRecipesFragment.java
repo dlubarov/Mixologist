@@ -122,12 +122,12 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
         }
     }
 
-    private static String toCommaSeparatedList(Collection<Ingredient> ingredients) {
+    private String toCommaSeparatedList(Collection<Ingredient> ingredients) {
         StringBuilder sb = new StringBuilder();
         for (Ingredient ingredient : ingredients) {
             if (sb.length() > 0)
                 sb.append(", ");
-            sb.append(ingredient.getShortName());
+            sb.append(ingredient.getShortName(getActivity()));
         }
         return sb.toString();
     }

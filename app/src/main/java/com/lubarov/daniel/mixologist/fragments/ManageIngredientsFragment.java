@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.events.IngredientEvent;
 import com.lubarov.daniel.mixologist.model.Ingredient;
@@ -23,14 +24,22 @@ public class ManageIngredientsFragment extends Fragment {
         Arrays.sort(allIngredients, new Comparator<Ingredient>() {
             @Override
             public int compare(Ingredient a, Ingredient b) {
-                return a.getLongName().compareTo(b.getLongName());
+                return a.getLongName(getActivity()).compareToIgnoreCase(b.getLongName(getActivity()));
             }
         });
 
         View view = inflater.inflate(R.layout.manage_inventory_fragment, container, false);
         final ListView ingredientsView = (ListView) view.findViewById(R.id.ingredients);
-        final ArrayAdapter<Ingredient> adapter = new ArrayAdapter<>(getActivity(),
-                android.R.layout.simple_list_item_checked, allIngredients);
+        final ArrayAdapter<Ingredient> adapter = new ArrayAdapter<Ingredient>(getActivity(),
+                android.R.layout.simple_list_item_checked, allIngredients) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+                text1.setText(getItem(position).getLongName(getContext()));
+                return view;
+            }
+        };
         ingredientsView.setAdapter(adapter);
 
         // Check all ingredients which are already in the inventory.

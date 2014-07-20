@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="search">検索</string>
-    <string name="instructions">説明書</string>
-    <string name="ingredients">材料</string>
-    <string name="photograph">写真</string>
-    <string name="favorite">お気に入り</string>
-</resources>
