@@ -26,7 +26,7 @@ public class NagDecider {
 
     private static boolean shouldNagForFirstTime(Context context) {
         int recipesViewed = CountersStorage.getCount(context, "recipes_viewed");
-        return recipesViewed >= 5; // TODO: 40?
+        return recipesViewed >= 20;
     }
 
     private static boolean shouldNagAgain(long timeSinceLastDelayMs) {

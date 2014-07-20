@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -27,8 +28,15 @@ public class ReviewDialogFragment extends DialogFragment {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             getPreferences().edit().putBoolean("dont_nag_for_review", true).commit();
-            getActivity().startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("market://details?id=com.lubarov.daniel.mixologist")));
+
+            String marketUri = "market://details?id=com.lubarov.daniel.mixologist";
+            String httpUri = "https://play.google.com/store/apps/details?id=com.lubarov.daniel.mixologist";
+
+            PackageManager packageManager = getActivity().getApplication().getPackageManager();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(marketUri));
+            if (packageManager.resolveActivity(intent, 0) == null)
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse(httpUri));
+            getActivity().startActivity(intent);
         }
     }
 
