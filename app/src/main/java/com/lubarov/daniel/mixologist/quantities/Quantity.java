@@ -7,6 +7,19 @@ package com.lubarov.daniel.mixologist.quantities;
 public class Quantity {
     private final double litres;
 
+    public static Quantity from(double amount, Unit unit) {
+        switch (unit) {
+            case CL:
+                return fromCentilitres(amount);
+            case ML:
+                return fromMillilitres(amount);
+            case OZ:
+                return fromOunces(amount);
+            default:
+                throw new IllegalArgumentException("Unexpected unit: " + unit);
+        }
+    }
+
     public static Quantity fromCentilitres(double centilitres) {
         return new Quantity(centilitres / 100);
     }
@@ -21,6 +34,19 @@ public class Quantity {
 
     private Quantity(double litres) {
         this.litres = litres;
+    }
+
+    public double get(Unit unit) {
+        switch (unit) {
+            case CL:
+                return getCentilitres();
+            case ML:
+                return getMillilitres();
+            case OZ:
+                return getOunces();
+            default:
+                throw new IllegalArgumentException("Unexpected unit: " + unit);
+        }
     }
 
     public double getCentilitres() {

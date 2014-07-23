@@ -11,6 +11,7 @@ import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.events.EventListener;
 import com.lubarov.daniel.mixologist.events.FavoriteEvent;
 import com.lubarov.daniel.mixologist.model.Recipe;
+import com.lubarov.daniel.mixologist.quantities.UnitConverter;
 import com.lubarov.daniel.mixologist.storage.CountersStorage;
 import com.lubarov.daniel.mixologist.storage.FavoritesStorage;
 
@@ -103,7 +104,7 @@ public class ViewRecipeFragment extends Fragment implements EventListener<Favori
         for (String ingredient : ingredients) {
             if (html.length() > 0)
                 html.append("<br />");
-            html.append("&#8226; ").append(ingredient);
+            html.append("&#8226; ").append(UnitConverter.convertUnits(ingredient));
         }
         return html.toString();
     }

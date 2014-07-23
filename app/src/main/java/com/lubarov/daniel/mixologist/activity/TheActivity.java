@@ -20,6 +20,7 @@ import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.fragments.*;
 import com.lubarov.daniel.mixologist.model.Recipe;
 import com.lubarov.daniel.mixologist.model.RecipeData;
+import com.lubarov.daniel.mixologist.quantities.UnitConverter;
 import com.lubarov.daniel.mixologist.reviewnagger.NagDecider;
 import com.lubarov.daniel.mixologist.reviewnagger.ReviewDialogFragment;
 
@@ -32,6 +33,7 @@ public class TheActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Crashlytics.start(this);
+        UnitConverter.init(this);
 
         setContentView(R.layout.root_layout);
 
