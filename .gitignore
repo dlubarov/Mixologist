@@ -7,6 +7,6 @@ project.properties
 *.apk
 
 # API key is sensitive
-app/crashlytics.properties
+crashlytics.properties
 com_crashlytics_export_strings.xml
 crashlytics-build.properties
