@@ -87,7 +87,7 @@ public enum Ingredient {
     ORANGES(R.string.oranges_short, R.string.oranges_long),
     LEMONS(R.string.lemons_short, R.string.lemons_long),
     LIMES(R.string.limes_short, R.string.limes_long),
-    PINEAPPLES(R.string.pineapples_short, R.string.pineapples_short),
+    PINEAPPLES(R.string.pineapples_short, R.string.pineapples_long),
     PEACHES(R.string.peaches_short, R.string.peaches_long),
     TOMATOES(R.string.tomatoes_short, R.string.tomatoes_long),
     CRANBERRIES(R.string.cranberries_short, R.string.cranberries_long),
