@@ -103,6 +103,7 @@ public class Recipe implements Parcelable {
         dest.writeString(name);
         dest.writeStringList(ingredientDescriptions);
         dest.writeStringList(toNames(requiredIngredients));
+        dest.writeStringList(toNames(garnishIngredients));
         dest.writeStringList(steps);
         dest.writeInt(imageResource);
         dest.writeString(imageAttribution);
