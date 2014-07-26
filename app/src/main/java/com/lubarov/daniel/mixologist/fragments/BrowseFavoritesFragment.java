@@ -56,6 +56,12 @@ public class BrowseFavoritesFragment extends Fragment implements EventListener<F
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        FavoriteEvent.MANAGER.removeListener(this);
+    }
+
+    @Override
     public void consume(FavoriteEvent event) {
         if (event.isFavorite())
             adapter.add(event.getRecipe());

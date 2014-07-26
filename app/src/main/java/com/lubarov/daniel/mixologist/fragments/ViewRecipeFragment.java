@@ -71,6 +71,12 @@ public class ViewRecipeFragment extends Fragment implements EventListener<Favori
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        FavoriteEvent.MANAGER.removeListener(this);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.view_recipe_actions, menu);
         favoriteButton = menu.findItem(R.id.favorite);

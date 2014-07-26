@@ -15,6 +15,10 @@ public class EventManager<T> {
         listeners.put(listener, null);
     }
 
+    public synchronized void removeListener(EventListener<T> listener) {
+        listeners.remove(listener);
+    }
+
     public synchronized void notifyAll(T event) {
         for (EventListener<T> listener : listeners.keySet())
             listener.consume(event);

@@ -28,6 +28,7 @@ import java.util.*;
  */
 public class AvailableRecipesFragment extends Fragment implements EventListener<IngredientEvent> {
     private TextView introView;
+    private Adapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
@@ -37,9 +38,7 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
         updateIntro();
 
         ListView recipesView = (ListView) view.findViewById(R.id.recipes);
-        final Adapter adapter = new Adapter();
-
-        recipesView.setAdapter(adapter);
+        recipesView.setAdapter(adapter = new Adapter());
         recipesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -53,8 +52,15 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        IngredientEvent.MANAGER.removeListener(this);
+    }
+
+    @Override
     public void consume(IngredientEvent event) {
         updateIntro();
+        adapter.consume(event);
     }
 
     private void updateIntro() {
@@ -67,7 +73,7 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
             introView.setVisibility(View.GONE);
     }
 
-    private class Adapter extends ArrayAdapter<Recipe> implements EventListener<IngredientEvent> {
+    private class Adapter extends ArrayAdapter<Recipe> {
         final Map<Recipe, View> recipeViews;
 
         Adapter() {
@@ -75,7 +81,6 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
                     new ArrayList<>(RecipeData.ALL_RECIPES));
             recipeViews = new HashMap<>();
             sort();
-            IngredientEvent.MANAGER.addListener(this);
         }
 
         @Override
@@ -107,7 +112,6 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
             }
         }
 
-        @Override
         public void consume(IngredientEvent event) {
             for (Recipe recipe : RecipeSearcher.findByIngredient(event.getIngredient())) {
                 View view = recipeViews.get(recipe);
