@@ -126,8 +126,8 @@ public class ViewRecipeFragment extends Fragment implements EventListener<Favori
 
     private void updateFavoriteIcon(boolean isFavorite) {
         int resId = isFavorite
-                ? R.drawable.btn_star_on_normal_holo_light
-                : R.drawable.btn_star_off_normal_holo_light;
+                ? R.drawable.btn_star_on
+                : R.drawable.btn_star_off;
         favoriteButton.setIcon(resId);
     }
 }
