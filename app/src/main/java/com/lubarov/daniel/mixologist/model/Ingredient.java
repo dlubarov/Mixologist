@@ -30,7 +30,7 @@ public enum Ingredient {
     COFFEE(R.string.coffee_short, R.string.coffee_long),
     COFFEE_LIQUEUR(R.string.coffee_liqueur_short, R.string.coffee_liqueur_long, "kahlua"),
 
-    BAILEYS_IRISH_CREAH(R.string.baileys_irish_creah_short, R.string.baileys_irish_creah_long),
+    IRISH_CREAM(R.string.irish_cream_short, R.string.irish_cream_long),
 
     TRIPLE_SEC(R.string.triple_sec_short, R.string.triple_sec_long),
     CURACAO(R.string.curacao_short, R.string.curacao_long),

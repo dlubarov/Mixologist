@@ -122,7 +122,7 @@ public class RecipeData {
 
             new Recipe("B52",
                     Arrays.asList("2 cl Kahlua", "2 cl Bailey's Irish Cream", "2 cl Grand Marnier"),
-                    Arrays.asList(Ingredient.COFFEE_LIQUEUR, Ingredient.BAILEYS_IRISH_CREAH, Ingredient.TRIPLE_SEC),
+                    Arrays.asList(Ingredient.COFFEE_LIQUEUR, Ingredient.IRISH_CREAM, Ingredient.TRIPLE_SEC),
                     Arrays.<Ingredient>asList(),
                     Arrays.asList(
                             "Layer ingredients one at a time starting with Kahlua, followed by Bailey's Irish Cream and top with Grand Marnier.",
@@ -130,7 +130,7 @@ public class RecipeData {
                     R.drawable.b52, "scorps80"),
 
             new Recipe("Caipirinha",
-                    Arrays.asList("5 cl Cachaça", "half lime, cut into 4 wedges", "2 teaspoon sugar"),
+                    Arrays.asList("5 cl cachaça", "half lime, cut into 4 wedges", "2 teaspoon sugar"),
                     Arrays.asList(Ingredient.CACHACA, Ingredient.LIMES, Ingredient.SUGAR_SYRUP),
                     Arrays.<Ingredient>asList(),
                     Arrays.asList(
@@ -517,8 +517,8 @@ public class RecipeData {
                     R.drawable.negroni, "Jeremy Brooks"),
 
             new Recipe("Old Fashioned",
-                    Arrays.asList("4.5 cl bourbon or rye whisky", "2 dashes Angostura bitters", "1 sugar cube",
-                            "few dashes plain water"),
+                    Arrays.asList("4.5 cl bourbon or rye whisky", "2 dashes Angostura bitters",
+                            "1 sugar cube", "few dashes plain water"),
                     // TODO: bourbon OR rye
                     Arrays.asList(Ingredient.BOURBON_WHISKY, Ingredient.ANGOSTURA_BITTERS, Ingredient.SUGAR_SYRUP),
                     Arrays.asList(Ingredient.ORANGES, Ingredient.MARASCHINO_CHERRIES),
