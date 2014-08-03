@@ -20,22 +20,20 @@ import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.fragments.*;
 import com.lubarov.daniel.mixologist.model.Recipe;
 import com.lubarov.daniel.mixologist.model.RecipeData;
-import com.lubarov.daniel.mixologist.quantities.UnitConverter;
 import com.lubarov.daniel.mixologist.reviewnagger.NagDecider;
 import com.lubarov.daniel.mixologist.reviewnagger.ReviewDialogFragment;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class TheActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity {
     private ThePagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Crashlytics.start(this);
-        UnitConverter.init(this);
 
-        setContentView(R.layout.root_layout);
+        setContentView(R.layout.main_activity_layout);
 
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
