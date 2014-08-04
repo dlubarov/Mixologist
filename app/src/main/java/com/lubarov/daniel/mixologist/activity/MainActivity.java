@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.BaseColumns;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -49,24 +48,19 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
                 if (created.get()) {
-                    ContainerFragment container = (ContainerFragment) pagerAdapter.getItem(tab.getPosition());
-                    if (container.getChildFragmentManager() != null && container.getChildFragmentManager().getFragments() != null)
-                        for (Fragment child : container.getChildFragmentManager().getFragments())
-                            if (child != null && child.isVisible())
-                                child.setMenuVisibility(true);
+                    ContainerFragment container = (ContainerFragment) pagerAdapter.getRegisteredFragment(tab.getPosition());
+                    if (container != null)
+                        container.showOrHideMenu(true);
                 }
-
                 viewPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
                 if (created.get()) {
-                    ContainerFragment container = (ContainerFragment) pagerAdapter.getItem(tab.getPosition());
-                    if (container.getChildFragmentManager() != null && container.getChildFragmentManager().getFragments() != null)
-                        for (Fragment child : container.getChildFragmentManager().getFragments())
-                            if (child != null && child.isVisible())
-                                child.setMenuVisibility(false);
+                    ContainerFragment container = (ContainerFragment) pagerAdapter.getRegisteredFragment(tab.getPosition());
+                    if (container != null)
+                        container.showOrHideMenu(false);
                 }
             }
 
