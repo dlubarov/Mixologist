@@ -50,7 +50,11 @@ public class FavoritesStorage {
             SQLiteDatabase database = MixologistOpenHelper.getSingleton(context).getReadableDatabase();
             Cursor cursor = database.rawQuery("SELECT name FROM favorites ORDER BY name;", null);
             while (cursor.moveToNext())
-                cache.add(RecipeData.getByName(cursor.getString(0)));
+                try {
+                    cache.add(RecipeData.getByName(cursor.getString(0)));
+                } catch (IllegalArgumentException e) {
+                    // Recipe was renamed or deleted.
+                }
             cursor.close();
         }
     }
