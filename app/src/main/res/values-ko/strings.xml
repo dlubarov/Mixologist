@@ -12,6 +12,12 @@
     <string name="rate">"비율"</string>
     <string name="later">"후"</string>
     <string name="never">"안함"</string>
+    <string name="preferences">환경 설정</string>
+    <string name="unit_of_measurement">측정 단위</string>
+    <string name="centilitres">cl</string>
+    <string name="millilitres">ml</string>
+    <string name="ounces">oz</string>
+    <string name="garnish_optional">선택 사양으로 장식 치료</string>
 
     <!-- Ingredients. -->
     <string name="absinthe_short">"absinthe"</string>

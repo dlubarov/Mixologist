@@ -4,14 +4,20 @@
 
     <!-- Misc strings. -->
     <string name="search">"Pesquisa"</string>
-    <string name="instructions">"Instruções "</string>
-    <string name="ingredients">"Ingredients"</string>
-    <string name="photograph">"Photograph"</string>
+    <string name="instructions">"Instruções"</string>
+    <string name="ingredients">"Ingredientes"</string>
+    <string name="photograph">"Fotografia"</string>
     <string name="favorite">"Adicionar aos favoritos"</string>
-    <string name="rate_message">"If you like the app, please consider reviewing it in the Play Store."</string>
+    <string name="rate_message">"Se você gosta do app, por favor considere revê-la na Play Store."</string>
     <string name="rate">"Avaliar"</string>
-    <string name="later">"Later"</string>
-    <string name="never">"Never"</string>
+    <string name="later">"Mais tarde"</string>
+    <string name="never">"Nunca"</string>
+    <string name="preferences">Preferências</string>
+    <string name="unit_of_measurement">Unidade de medição</string>
+    <string name="centilitres">centilitros (cl)</string>
+    <string name="millilitres">mililitros (ml)</string>
+    <string name="ounces">onças (oz)</string>
+    <string name="garnish_optional">Trate enfeite como opcional</string>
 
     <!-- Ingredients. -->
     <string name="absinthe_short">"absinthe"</string>

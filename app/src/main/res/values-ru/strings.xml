@@ -8,10 +8,16 @@
     <string name="ingredients">"Компоненты"</string>
     <string name="photograph">"Фотография"</string>
     <string name="favorite">"В избранное"</string>
-    <string name="rate_message">"If you like the app, please consider reviewing it in the Play Store."</string>
+    <string name="rate_message">"Если вы любите приложение, пожалуйста, рассмотреть вопрос о пересмотре его."</string>
     <string name="rate">"Оценить"</string>
     <string name="later">"Позже"</string>
     <string name="never">"Никогда"</string>
+    <string name="preferences">Предпочтения</string>
+    <string name="unit_of_measurement">Единица измерения</string>
+    <string name="centilitres">сантилитр (cl)</string>
+    <string name="millilitres">миллилитр (ml)</string>
+    <string name="ounces">унции (oz)</string>
+    <string name="garnish_optional">Лечить гарнир, как опция</string>
 
     <!-- Ingredients. -->
     <string name="absinthe_short">"absinthe"</string>

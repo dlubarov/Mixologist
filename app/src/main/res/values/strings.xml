@@ -188,4 +188,10 @@
     <string name="pepper_long">Pepper</string>
     <string name="nutmeg_short">nutmeg</string>
     <string name="nutmeg_long">Nutmeg</string>
+    <string name="preferences">Preferences</string>
+    <string name="unit_of_measurement">Unit of measurement</string>
+    <string name="centilitres">centilitres (cl)</string>
+    <string name="millilitres">millilitres (ml)</string>
+    <string name="ounces">ounces (oz)</string>
+    <string name="garnish_optional">Treat garnish as optional</string>
 </resources>

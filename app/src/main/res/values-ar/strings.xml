@@ -12,6 +12,12 @@
     <string name="rate">"تقييم"</string>
     <string name="later">"Later"</string>
     <string name="never">"أبداً"</string>
+    <string name="preferences">التفضيلات</string>
+    <string name="unit_of_measurement">وحدة القياس</string>
+    <string name="centilitres">cl</string>
+    <string name="millilitres">ml</string>
+    <string name="ounces">oz</string>
+    <string name="garnish_optional">علاج مقبلات واختياري</string>
 
     <!-- Ingredients. -->
     <string name="absinthe_short">"absinthe"</string>

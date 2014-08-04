@@ -8,14 +8,14 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Preferences"
+            android:text="@string/preferences"
             style="@android:style/TextAppearance.Large" />
 
     <TextView
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Unit of measurement"
+            android:text="@string/unit_of_measurement"
             style="@android:style/TextAppearance.Medium" />
     <RadioGroup
             android:layout_width="match_parent"
@@ -25,21 +25,21 @@
                 android:id="@+id/radio_cl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="centilitres (cl)"
+                android:text="@string/centilitres"
                 android:onClick="onRadioButtonClicked"
                 style="@android:style/TextAppearance.Small" />
         <RadioButton
                 android:id="@+id/radio_ml"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="millilitres (ml)"
+                android:text="@string/millilitres"
                 android:onClick="onRadioButtonClicked"
                 style="@android:style/TextAppearance.Small" />
         <RadioButton
                 android:id="@+id/radio_oz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ounces (oz)"
+                android:text="@string/ounces"
                 android:onClick="onRadioButtonClicked"
                 style="@android:style/TextAppearance.Small" />
     </RadioGroup>
@@ -49,6 +49,6 @@
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Treat garnish as optional"
+            android:text="@string/garnish_optional"
             android:onClick="onCheckboxClicked" />
 </LinearLayout>

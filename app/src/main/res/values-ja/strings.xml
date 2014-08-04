@@ -12,6 +12,12 @@
     <string name="rate">"評価する"</string>
     <string name="later">"後で"</string>
     <string name="never">"使用しない"</string>
+    <string name="preferences">嗜好</string>
+    <string name="unit_of_measurement">測定単位</string>
+    <string name="centilitres">centilitres (cl)</string>
+    <string name="millilitres">millilitres (ml)</string>
+    <string name="ounces">ounces (oz)</string>
+    <string name="garnish_optional">オプションとしてガーニッシュを扱う</string>
 
     <!-- Ingredients. -->
     <string name="absinthe_short">"アブサン"</string>

@@ -12,6 +12,12 @@
     <string name="rate">"Valuta"</string>
     <string name="later">"Più tardi"</string>
     <string name="never">"Mai"</string>
+    <string name="preferences">Preferenze</string>
+    <string name="unit_of_measurement">Unità di misura</string>
+    <string name="centilitres">centilitri (cl)</string>
+    <string name="millilitres">millilitri (ml)</string>
+    <string name="ounces">once (oz)</string>
+    <string name="garnish_optional">Trattare guarnire come optional</string>
 
     <!-- Ingredients. -->
     <string name="absinthe_short">"absinthe"</string>

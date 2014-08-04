@@ -12,6 +12,12 @@
     <string name="rate">"评价"</string>
     <string name="later">"Later"</string>
     <string name="never">"从来没有"</string>
+    <string name="preferences">首</string>
+    <string name="unit_of_measurement">计量单位</string>
+    <string name="centilitres">centilitres (cl)</string>
+    <string name="millilitres">millilitres (ml)</string>
+    <string name="ounces">ounces (oz)</string>
+    <string name="garnish_optional">把配菜可选</string>
 
     <!-- Ingredients. -->
     <string name="absinthe_short">"absinthe"</string>

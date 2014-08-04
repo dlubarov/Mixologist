@@ -6,12 +6,18 @@
     <string name="search">"Sök"</string>
     <string name="instructions">"Instruktioner"</string>
     <string name="ingredients">"Ingridienser"</string>
-    <string name="photograph">"Photograph"</string>
+    <string name="photograph">"Fotografi"</string>
     <string name="favorite">"Favorit"</string>
-    <string name="rate_message">"If you like the app, please consider reviewing it in the Play Store."</string>
+    <string name="rate_message">"Om du gillar appen, kan du överväga att se över det i Play Store."</string>
     <string name="rate">"Betygsätt"</string>
-    <string name="later">"Later"</string>
-    <string name="never">"Never"</string>
+    <string name="later">"Senare"</string>
+    <string name="never">"Aldrig"</string>
+    <string name="preferences">Inställningar</string>
+    <string name="unit_of_measurement">Måttenhet</string>
+    <string name="centilitres">centiliter (cl)</string>
+    <string name="millilitres">milliliter (ml)</string>
+    <string name="ounces">ounce (oz)</string>
+    <string name="garnish_optional">Behandla garnering som tillval</string>
 
     <!-- Ingredients. -->
     <string name="absinthe_short">"absinthe"</string>
