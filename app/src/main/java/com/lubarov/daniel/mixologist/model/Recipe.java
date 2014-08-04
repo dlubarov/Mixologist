@@ -1,7 +1,10 @@
 package com.lubarov.daniel.mixologist.model;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.lubarov.daniel.mixologist.storage.IngredientStorage;
+import com.lubarov.daniel.mixologist.storage.PreferencesStorage;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -72,9 +75,12 @@ public class Recipe implements Parcelable {
         return imageAttribution;
     }
 
-    public Set<Ingredient> getMissingIngredients(Set<Ingredient> availableIngredients) {
+    public Set<Ingredient> getMissingIngredients(Context context) {
         Set<Ingredient> missingIngredients = new HashSet<>(requiredIngredients);
-        missingIngredients.removeAll(availableIngredients);
+        if (!PreferencesStorage.getGarnishOptional(context)) {
+            missingIngredients.addAll(garnishIngredients);
+        }
+        missingIngredients.removeAll(IngredientStorage.getAllIngredientsInStock(context));
         return missingIngredients;
     }
 

@@ -1,22 +1,23 @@
 package com.lubarov.daniel.mixologist.model;
 
+import android.content.Context;
+
 import java.util.Comparator;
-import java.util.Set;
 
 /**
  * Sorts recipes starting with ones that can be made with the currently available ingredients.
  */
 public class RecipeComparator implements Comparator<Recipe> {
-    private final Set<Ingredient> availableIngredients;
+    private final Context context;
 
-    public RecipeComparator(Set<Ingredient> availableIngredients) {
-        this.availableIngredients = availableIngredients;
+    public RecipeComparator(Context context) {
+        this.context = context;
     }
 
     @Override
     public int compare(Recipe a, Recipe b) {
-        int aMissing = a.getMissingIngredients(availableIngredients).size();
-        int bMissing = b.getMissingIngredients(availableIngredients).size();
+        int aMissing = a.getMissingIngredients(context).size();
+        int bMissing = b.getMissingIngredients(context).size();
         if (aMissing != bMissing)
             return aMissing - bMissing;
         else

@@ -19,9 +19,12 @@ public class RecipeSearcher {
         recipesByIngredient = new HashMap<>();
         for (Ingredient ingredient : Ingredient.values())
             recipesByIngredient.put(ingredient, new HashSet<Recipe>());
-        for (Recipe recipe : RecipeData.ALL_RECIPES)
+        for (Recipe recipe : RecipeData.ALL_RECIPES) {
             for (Ingredient ingredient : recipe.getRequiredIngredients())
                 recipesByIngredient.get(ingredient).add(recipe);
+            for (Ingredient ingredient : recipe.getGarnishIngredients())
+                recipesByIngredient.get(ingredient).add(recipe);
+        }
     }
 
     /**

@@ -540,7 +540,7 @@ public class RecipeData {
                     R.drawable.paradise, "Mathias Holm"),
 
             new Recipe("Pina Colada",
-                    Arrays.asList("3 cl white rum", "9 cl pineapple juice", "3 cl Coconut milk"),
+                    Arrays.asList("3 cl white rum", "9 cl pineapple juice", "3 cl coconut milk"),
                     Arrays.asList(Ingredient.WHITE_RUM, Ingredient.PINEAPPLES, Ingredient.MILK),
                     Arrays.asList(Ingredient.MARASCHINO_CHERRIES),
                     Arrays.asList(

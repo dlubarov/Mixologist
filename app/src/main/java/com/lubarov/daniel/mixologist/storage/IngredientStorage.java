@@ -9,6 +9,9 @@ import com.lubarov.daniel.mixologist.model.Ingredient;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Utilities for accessing the persisted state of ingredients.
+ */
 public class IngredientStorage {
     private static Set<Ingredient> cache;
 
@@ -46,7 +49,11 @@ public class IngredientStorage {
             SQLiteDatabase database = MixologistOpenHelper.getSingleton(context).getReadableDatabase();
             Cursor cursor = database.rawQuery("SELECT name FROM ingredients;", new String[0]);
             while (cursor.moveToNext())
-                cache.add(Ingredient.valueOf(cursor.getString(0)));
+                try {
+                    cache.add(Ingredient.valueOf(cursor.getString(0)));
+                } catch (IllegalArgumentException e) {
+                    // Ingredient was renamed or deleted.
+                }
             cursor.close();
         }
     }

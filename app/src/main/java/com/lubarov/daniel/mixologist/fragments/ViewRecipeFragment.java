@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.events.EventListener;
 import com.lubarov.daniel.mixologist.events.FavoriteEvent;
+import com.lubarov.daniel.mixologist.events.PreferredUnitEvent;
 import com.lubarov.daniel.mixologist.model.Recipe;
 import com.lubarov.daniel.mixologist.quantities.UnitConverter;
 import com.lubarov.daniel.mixologist.storage.CountersStorage;
@@ -20,7 +21,7 @@ import java.util.List;
 /**
  * An activity for viewing a particular recipe.
  */
-public class ViewRecipeFragment extends Fragment implements EventListener<FavoriteEvent> {
+public class ViewRecipeFragment extends Fragment {
     /**
      * The max height of the photo, as a fraction of the display's height.
      */
@@ -28,6 +29,15 @@ public class ViewRecipeFragment extends Fragment implements EventListener<Favori
 
     private Recipe recipe;
     private MenuItem favoriteButton;
+    private TextView ingredientsView;
+
+    private final FavoriteEventListener favoriteEventListener;
+    private final PreferredUnitEventListener preferredUnitEventListener;
+
+    public ViewRecipeFragment() {
+        favoriteEventListener = new FavoriteEventListener();
+        preferredUnitEventListener = new PreferredUnitEventListener();
+    }
 
     public static ViewRecipeFragment create(Recipe recipe) {
         Bundle args = new Bundle();
@@ -56,7 +66,7 @@ public class ViewRecipeFragment extends Fragment implements EventListener<Favori
             attributionView.setText("Photo courtesy of " + recipe.getImageAttribution());
         else
             attributionView.setVisibility(View.GONE);
-        TextView ingredientsView = (TextView) view.findViewById(R.id.ingredients);
+        ingredientsView = (TextView) view.findViewById(R.id.ingredients);
         ingredientsView.setText(Html.fromHtml(getIngredientsHtml(recipe.getIngredientDescriptions())));
 
         TextView stepsView = (TextView) view.findViewById(R.id.steps);
@@ -66,14 +76,16 @@ public class ViewRecipeFragment extends Fragment implements EventListener<Favori
 
         CountersStorage.incrementCounter(getActivity(), "recipes_viewed");
 
-        FavoriteEvent.MANAGER.addListener(this);
+        FavoriteEvent.MANAGER.addListener(favoriteEventListener);
+        PreferredUnitEvent.MANAGER.addListener(preferredUnitEventListener);
         return view;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        FavoriteEvent.MANAGER.removeListener(this);
+        FavoriteEvent.MANAGER.removeListener(favoriteEventListener);
+        PreferredUnitEvent.MANAGER.removeListener(preferredUnitEventListener);
     }
 
     @Override
@@ -99,18 +111,12 @@ public class ViewRecipeFragment extends Fragment implements EventListener<Favori
         }
     }
 
-    @Override
-    public void consume(FavoriteEvent event) {
-        if (event.getRecipe().equals(recipe))
-            updateFavoriteIcon(event.isFavorite());
-    }
-
-    private static String getIngredientsHtml(List<String> ingredients) {
+    private String getIngredientsHtml(List<String> ingredients) {
         StringBuilder html = new StringBuilder();
         for (String ingredient : ingredients) {
             if (html.length() > 0)
                 html.append("<br />");
-            html.append("&#8226; ").append(UnitConverter.convertUnits(ingredient));
+            html.append("&#8226; ").append(UnitConverter.convertUnits(getActivity(), ingredient));
         }
         return html.toString();
     }
@@ -135,5 +141,20 @@ public class ViewRecipeFragment extends Fragment implements EventListener<Favori
                 ? R.drawable.btn_star_on
                 : R.drawable.btn_star_off;
         favoriteButton.setIcon(resId);
+    }
+
+    private class FavoriteEventListener implements EventListener<FavoriteEvent> {
+        @Override
+        public void consume(FavoriteEvent event) {
+            if (event.getRecipe().equals(recipe))
+                updateFavoriteIcon(event.isFavorite());
+        }
+    }
+
+    private class PreferredUnitEventListener implements EventListener<PreferredUnitEvent> {
+        @Override
+        public void consume(PreferredUnitEvent event) {
+            ingredientsView.setText(Html.fromHtml(getIngredientsHtml(recipe.getIngredientDescriptions())));
+        }
     }
 }

@@ -14,6 +14,7 @@ import com.lubarov.daniel.mixologist.RecipeSearcher;
 import com.lubarov.daniel.mixologist.ThumbnailCache;
 import com.lubarov.daniel.mixologist.activity.ContainerFragment;
 import com.lubarov.daniel.mixologist.events.EventListener;
+import com.lubarov.daniel.mixologist.events.GarnishOptionalEvent;
 import com.lubarov.daniel.mixologist.events.IngredientEvent;
 import com.lubarov.daniel.mixologist.model.Ingredient;
 import com.lubarov.daniel.mixologist.model.Recipe;
@@ -26,9 +27,16 @@ import java.util.*;
 /**
  * Browse all recipes, ordered starting with the ones that can be made with available ingredients.
  */
-public class AvailableRecipesFragment extends Fragment implements EventListener<IngredientEvent> {
+public class AvailableRecipesFragment extends Fragment {
     private TextView introView;
     private Adapter adapter;
+    private final IngredientEventListener ingredientEventListener;
+    private final GarnishOptionalEventListener garnishOptionalEventListener;
+
+    public AvailableRecipesFragment() {
+        this.ingredientEventListener = new IngredientEventListener();
+        this.garnishOptionalEventListener = new GarnishOptionalEventListener();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
@@ -47,20 +55,16 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
             }
         });
 
-        IngredientEvent.MANAGER.addListener(this);
+        IngredientEvent.MANAGER.addListener(ingredientEventListener);
+        GarnishOptionalEvent.MANAGER.addListener(garnishOptionalEventListener);
         return view;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        IngredientEvent.MANAGER.removeListener(this);
-    }
-
-    @Override
-    public void consume(IngredientEvent event) {
-        updateIntro();
-        adapter.consume(event);
+        IngredientEvent.MANAGER.removeListener(ingredientEventListener);
+        GarnishOptionalEvent.MANAGER.removeListener(garnishOptionalEventListener);
     }
 
     private void updateIntro() {
@@ -99,8 +103,7 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
             TextView text1 = (TextView) view.findViewById(R.id.text1);
             TextView text2 = (TextView) view.findViewById(R.id.text2);
 
-            Set<Ingredient> missingIngredients = recipe.getMissingIngredients(
-                    IngredientStorage.getAllIngredientsInStock(getActivity()));
+            Set<Ingredient> missingIngredients = recipe.getMissingIngredients(getActivity());
 
             text1.setText(recipe.getName());
             if (missingIngredients.isEmpty()) {
@@ -121,8 +124,19 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
             sort();
         }
 
+        public void consume(GarnishOptionalEvent event) {
+            for (Recipe recipe : RecipeData.ALL_RECIPES) {
+                if (!recipe.getGarnishIngredients().isEmpty()) {
+                    View view = recipeViews.get(recipe);
+                    if (view != null)
+                        updateRecipeView(recipe, view);
+                }
+            }
+            sort();
+        }
+
         private void sort() {
-            sort(new RecipeComparator(IngredientStorage.getAllIngredientsInStock(getActivity())));
+            sort(new RecipeComparator(getActivity()));
         }
     }
 
@@ -134,5 +148,20 @@ public class AvailableRecipesFragment extends Fragment implements EventListener<
             sb.append(ingredient.getShortName(getActivity()));
         }
         return sb.toString();
+    }
+
+    private class IngredientEventListener implements EventListener<IngredientEvent> {
+        @Override
+        public void consume(IngredientEvent event) {
+            updateIntro();
+            adapter.consume(event);
+        }
+    }
+
+    private class GarnishOptionalEventListener implements EventListener<GarnishOptionalEvent> {
+        @Override
+        public void consume(GarnishOptionalEvent event) {
+            adapter.consume(event);
+        }
     }
 }
