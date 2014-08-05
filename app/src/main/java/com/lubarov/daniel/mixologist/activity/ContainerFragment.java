@@ -61,7 +61,8 @@ public class ContainerFragment extends Fragment {
     public void showOrHideMenu(boolean visible) {
         for (int id = 0; id < nextId.get(); ++id) {
             Fragment child = getChildFragmentManager().findFragmentByTag(getTag(id));
-            child.setMenuVisibility(visible);
+            if (child != null)
+                child.setMenuVisibility(visible);
         }
     }
 
