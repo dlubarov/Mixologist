@@ -11,27 +11,29 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.crashlytics.android.Crashlytics;
 import com.lubarov.daniel.mixologist.R;
-import com.lubarov.daniel.mixologist.fragments.*;
+import com.lubarov.daniel.mixologist.fragments.ViewRecipeFragment;
+import com.lubarov.daniel.mixologist.fragments.ViewSearchResultsFragment;
 import com.lubarov.daniel.mixologist.model.Recipe;
 import com.lubarov.daniel.mixologist.model.RecipeData;
 import com.lubarov.daniel.mixologist.reviewnagger.NagDecider;
 import com.lubarov.daniel.mixologist.reviewnagger.ReviewDialogFragment;
-
+import io.fabric.sdk.android.Fabric;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
     private ThePagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Crashlytics.start(this);
+        Fabric.with(this, new Crashlytics());
 
         setContentView(R.layout.main_activity_layout);
 
