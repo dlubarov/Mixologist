@@ -157,7 +157,7 @@ public class RecipeData {
                     Arrays.asList(Ingredient.SPARKLING_WINE, Ingredient.COGNAC, Ingredient.ANGOSTURA_BITTERS),
                     Arrays.asList(Ingredient.ORANGES, Ingredient.MARASCHINO_CHERRIES),
                     Arrays.asList(
-                            "Add dash of Angostura bitter onto sugar cube and drop it into champagne flute.",
+                            "Add dash of Angostura bitters onto sugar cube and drop it into champagne flute.",
                             "Add cognac followed by pouring gently chilled champagne.",
                             "Garnish with orange slice and maraschino cherry."),
                     R.drawable.champagne_cocktail, "Addison Berry"),
