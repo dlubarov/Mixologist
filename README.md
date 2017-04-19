@@ -7,5 +7,5 @@ You can download the app from Google Play [here](https://play.google.com/store/a
 
 ## Credits
 
-Coconut icon by Visual Pharm - http://icons8.com/
-Feature graphic by Cayusa - https://www.flickr.com/photos/cayusa/
+* Coconut icon by Visual Pharm - http://icons8.com/
+* Feature graphic by Cayusa - https://www.flickr.com/photos/cayusa/
