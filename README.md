@@ -2,6 +2,8 @@
 
 This is an Android app for cocktail recipes. Currently it includes just the 77 official IBA recipes.
 
+You can download the app from Google Play [here](https://play.google.com/store/apps/details?id=com.lubarov.daniel.mixologist).
+
 
 ## Credits
 
