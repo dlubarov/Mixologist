@@ -194,4 +194,5 @@
     <string name="millilitres">millilitres (ml)</string>
     <string name="ounces">ounces (oz)</string>
     <string name="garnish_optional">Treat garnish as optional</string>
+    <string name="cocktail_photo">cocktail photograph</string>
 </resources>

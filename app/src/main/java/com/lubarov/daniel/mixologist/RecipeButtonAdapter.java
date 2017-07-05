@@ -3,11 +3,12 @@ package com.lubarov.daniel.mixologist;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.TypedValue;
-import android.view.Gravity;
+import android.support.annotation.NonNull;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.lubarov.daniel.mixologist.model.Recipe;
 
@@ -18,28 +19,19 @@ public class RecipeButtonAdapter extends ArrayAdapter<Recipe> {
         super(context, android.R.layout.simple_list_item_1, recipes);
     }
 
+    @NonNull
     @Override
-    // setBackgroundDrawable is used because setBackground requires API level 16.
-    @SuppressWarnings("deprecation")
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        return new TextView(getContext()) {
-            {
-                Recipe recipe = RecipeButtonAdapter.this.getItem(position);
-                setText(recipe.getName());
-                setGravity(Gravity.BOTTOM | Gravity.RIGHT);
-                setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
-                Bitmap thumbnail = ThumbnailCache.LARGE.getThumbnail(getResources(), recipe.getImageResource());
-                setBackgroundDrawable(new BitmapDrawable(getResources(), thumbnail));
-                setTextColor(0xFFFFFFFF);
-                setShadowLayer(2f, 0f, 0f, 0xFF000000);
-            }
+    public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.favorite_recipe, null);
+        Recipe recipe = RecipeButtonAdapter.this.getItem(position);
+        Bitmap thumbnail = ThumbnailCache.LARGE.getThumbnail(view.getResources(), recipe.getImageResource());
 
-            @Override
-            @SuppressWarnings("all")
-            public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-                // Force a square shape.
-                super.onMeasure(widthMeasureSpec, widthMeasureSpec);
-            }
-        };
+        ImageView iconView = (ImageView) view.findViewById(R.id.icon);
+        iconView.setBackground(new BitmapDrawable(view.getResources(), thumbnail));
+
+        TextView nameView = (TextView) view.findViewById(R.id.name);
+        nameView.setText(recipe.getName());
+        nameView.setShadowLayer(2f, 0f, 0f, 0xFF000000); // TODO xml-ify
+        return view;
     }
 }
