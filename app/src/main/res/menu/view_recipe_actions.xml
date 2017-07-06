@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:mixologist="http://schemas.android.com/apk/res-auto">
+
     <item android:id="@+id/favorite"
           android:title="@string/favorite"
           mixologist:showAsAction="always" />
+
+    <item android:id="@+id/print"
+        android:title="@string/print"
+        mixologist:showAsAction="ifRoom"
+        android:icon="@drawable/ic_print"/>
+
 </menu>

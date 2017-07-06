@@ -8,10 +8,18 @@
     <string name="ingredients">Ingredients</string>
     <string name="photograph">Photograph</string>
     <string name="favorite">Favorite</string>
+    <string name="print">Print</string>
     <string name="rate_message">If you like the app, please consider reviewing it in the Play Store.</string>
     <string name="rate">Rate</string>
     <string name="later">Later</string>
     <string name="never">Never</string>
+    <string name="preferences">Preferences</string>
+    <string name="unit_of_measurement">Unit of measurement</string>
+    <string name="centilitres">centilitres (cl)</string>
+    <string name="millilitres">millilitres (ml)</string>
+    <string name="ounces">ounces (oz)</string>
+    <string name="garnish_optional">Treat garnish as optional</string>
+    <string name="cocktail_photo">cocktail photograph</string>
 
     <!-- Ingredients. -->
     <string name="absinthe_short">absinthe</string>
@@ -188,11 +196,4 @@
     <string name="pepper_long">Pepper</string>
     <string name="nutmeg_short">nutmeg</string>
     <string name="nutmeg_long">Nutmeg</string>
-    <string name="preferences">Preferences</string>
-    <string name="unit_of_measurement">Unit of measurement</string>
-    <string name="centilitres">centilitres (cl)</string>
-    <string name="millilitres">millilitres (ml)</string>
-    <string name="ounces">ounces (oz)</string>
-    <string name="garnish_optional">Treat garnish as optional</string>
-    <string name="cocktail_photo">cocktail photograph</string>
 </resources>

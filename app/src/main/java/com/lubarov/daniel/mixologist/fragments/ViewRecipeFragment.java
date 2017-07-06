@@ -4,10 +4,17 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
 import android.util.DisplayMetrics;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.lubarov.daniel.mixologist.R;
+import com.lubarov.daniel.mixologist.RecipePrinter;
 import com.lubarov.daniel.mixologist.events.EventListener;
 import com.lubarov.daniel.mixologist.events.FavoriteEvent;
 import com.lubarov.daniel.mixologist.events.PreferredUnitEvent;
@@ -105,6 +112,9 @@ public class ViewRecipeFragment extends Fragment {
                 else
                     FavoritesStorage.addToFavorites(getActivity(), recipe);
                 FavoriteEvent.MANAGER.notifyAll(new FavoriteEvent(recipe, !wasFavorite));
+                return true;
+            case R.id.print:
+                RecipePrinter.print(recipe, getContext());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
