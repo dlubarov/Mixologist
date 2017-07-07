@@ -1,5 +1,6 @@
 package com.lubarov.daniel.mixologist.fragments;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -13,6 +14,7 @@ import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.RecipeSearcher;
 import com.lubarov.daniel.mixologist.ThumbnailCache;
 import com.lubarov.daniel.mixologist.activity.ContainerFragment;
+import com.lubarov.daniel.mixologist.activity.ViewRecipeActivity;
 import com.lubarov.daniel.mixologist.events.EventListener;
 import com.lubarov.daniel.mixologist.events.GarnishOptionalEvent;
 import com.lubarov.daniel.mixologist.events.IngredientEvent;
@@ -50,8 +52,9 @@ public class AvailableRecipesFragment extends Fragment {
         recipesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((ContainerFragment) getParentFragment()).pushFragment(
-                        ViewRecipeFragment.create(adapter.getItem(position)));
+                Intent intent = new Intent(getContext(), ViewRecipeActivity.class);
+                intent.putExtra("recipe", adapter.getItem(position));
+                startActivity(intent);
             }
         });
 

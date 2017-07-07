@@ -14,7 +14,7 @@ import java.lang.ref.WeakReference;
 class ThePagerAdapter extends FragmentPagerAdapter {
     private final SparseArray<WeakReference<ContainerFragment>> registeredFragments = new SparseArray<>();
 
-    public ThePagerAdapter(FragmentManager fragmentManager) {
+    ThePagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }
 
@@ -38,6 +38,20 @@ class ThePagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
+    public String getPageTitle(int position) {
+        switch (position) {
+            case 0:
+                return "Inventory";
+            case 1:
+                return "Recipes";
+            case 2:
+                return "Favorites";
+            default:
+                throw new IllegalArgumentException("Unexpected tab position: " + position);
+        }
+    }
+
+    @Override
     public int getCount() {
         return 3;
     }
@@ -55,7 +69,7 @@ class ThePagerAdapter extends FragmentPagerAdapter {
         super.destroyItem(container, position, object);
     }
 
-    public Fragment getRegisteredFragment(int position) {
+    Fragment getRegisteredFragment(int position) {
         WeakReference<ContainerFragment> container = registeredFragments.get(position);
         return container != null ? container.get() : null;
     }

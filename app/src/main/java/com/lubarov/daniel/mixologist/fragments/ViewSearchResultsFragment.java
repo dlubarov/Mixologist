@@ -1,5 +1,6 @@
 package com.lubarov.daniel.mixologist.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,8 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.lubarov.daniel.mixologist.R;
-import com.lubarov.daniel.mixologist.activity.ContainerFragment;
+import com.lubarov.daniel.mixologist.activity.ViewRecipeActivity;
 import com.lubarov.daniel.mixologist.model.Recipe;
 import com.lubarov.daniel.mixologist.model.RecipeData;
 
@@ -46,8 +48,9 @@ public class ViewSearchResultsFragment extends Fragment {
             resultsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ((ContainerFragment) getParentFragment()).pushFragment(
-                            ViewRecipeFragment.create(matchingRecipes.get(position)));
+                    Intent intent = new Intent(getContext(), ViewRecipeActivity.class);
+                    intent.putExtra("recipe", matchingRecipes.get(position));
+                    startActivity(intent);
                 }
             });
         }

@@ -3,14 +3,15 @@ package com.lubarov.daniel.mixologist.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.lubarov.daniel.mixologist.R;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+// TODO remove?
 public class ContainerFragment extends Fragment {
     private final AtomicInteger nextId = new AtomicInteger();
 

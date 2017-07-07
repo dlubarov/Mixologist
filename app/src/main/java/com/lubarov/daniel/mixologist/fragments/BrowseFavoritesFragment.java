@@ -1,5 +1,6 @@
 package com.lubarov.daniel.mixologist.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,10 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+
 import com.lubarov.daniel.mixologist.GridSizer;
 import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.RecipeButtonAdapter;
-import com.lubarov.daniel.mixologist.activity.ContainerFragment;
+import com.lubarov.daniel.mixologist.activity.ViewRecipeActivity;
 import com.lubarov.daniel.mixologist.events.EventListener;
 import com.lubarov.daniel.mixologist.events.FavoriteEvent;
 import com.lubarov.daniel.mixologist.model.Recipe;
@@ -46,8 +48,9 @@ public class BrowseFavoritesFragment extends Fragment implements EventListener<F
         recipeGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ((ContainerFragment) getParentFragment()).pushFragment(
-                        ViewRecipeFragment.create(recipesToDisplay.get(position)));
+                Intent intent = new Intent(getContext(), ViewRecipeActivity.class);
+                intent.putExtra("recipe", adapter.getItem(position));
+                startActivity(intent);
             }
         });
 

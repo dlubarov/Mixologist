@@ -1,24 +1,41 @@
 package com.lubarov.daniel.mixologist.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
+
 import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.events.GarnishOptionalEvent;
 import com.lubarov.daniel.mixologist.events.PreferredUnitEvent;
 import com.lubarov.daniel.mixologist.quantities.Unit;
 import com.lubarov.daniel.mixologist.storage.PreferencesStorage;
 
-public class PreferencesActivity extends ActionBarActivity {
+public class PreferencesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.preferences_activity_layout);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar.setTitle(R.string.preferences);
+        setSupportActionBar(myToolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Unit preferredUnit = PreferencesStorage.getPreferredUnit(this);
         ((RadioButton) findViewById(unitToId(preferredUnit))).setChecked(true);
         ((CheckBox) findViewById(R.id.checkbox_garnish)).setChecked(true);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 
     public void onRadioButtonClicked(View view) {
