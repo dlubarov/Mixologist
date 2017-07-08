@@ -194,4 +194,10 @@
     <string name="pepper_long">"Перец"</string>
     <string name="nutmeg_short">"nutmeg"</string>
     <string name="nutmeg_long">"Мускатный орех"</string>
+    <string name="cocktail_photo">Фотография коктейля</string>
+    <string name="missing_ingredients">Отсутствует %s</string>
+    <string name="no_ingredients_warning">Вы еще не добавили ингредиентов. Пожалуйста, используйте вкладку «Ингредиенты», чтобы указать, какие ингредиенты у вас есть.</string>
+    <string name="no_recipes_found">Никаких рецептов не найдено.</string>
+    <string name="photo_credit">Фото предоставлено %s</string>
+    <string name="print">Распечатать</string>
 </resources>

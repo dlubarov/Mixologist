@@ -194,4 +194,10 @@
     <string name="pepper_long">"Pepper"</string>
     <string name="nutmeg_short">"nutmeg"</string>
     <string name="nutmeg_long">"Nutmeg"</string>
+    <string name="cocktail_photo">鸡尾酒照片</string>
+    <string name="missing_ingredients">缺少%s</string>
+    <string name="no_ingredients_warning">您尚未添加任何成分。 请使用“成分”选项卡来指明您可以使用哪些成分。</string>
+    <string name="no_recipes_found">没有找到食谱。</string>
+    <string name="photo_credit">照片由 %s 提供</string>
+    <string name="print">打印</string>
 </resources>

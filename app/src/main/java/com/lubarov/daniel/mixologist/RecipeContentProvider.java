@@ -7,8 +7,12 @@ import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
+import android.support.annotation.NonNull;
+
 import com.lubarov.daniel.mixologist.model.Recipe;
 import com.lubarov.daniel.mixologist.model.RecipeData;
+
+import java.util.Locale;
 
 public class RecipeContentProvider extends ContentProvider {
     private static final int MAX_RESULTS = 5;
@@ -19,8 +23,8 @@ public class RecipeContentProvider extends ContentProvider {
     }
 
     @Override
-    public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        String query = uri.getLastPathSegment().toLowerCase();
+    public Cursor query(@NonNull Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
+        String query = uri.getLastPathSegment().toLowerCase(Locale.ENGLISH);
         MatrixCursor cursor = new MatrixCursor(new String[] {
                 BaseColumns._ID,
                 SearchManager.SUGGEST_COLUMN_TEXT_1,
@@ -53,22 +57,22 @@ public class RecipeContentProvider extends ContentProvider {
     }
 
     @Override
-    public String getType(Uri uri) {
+    public String getType(@NonNull Uri uri) {
         return SearchManager.SUGGEST_MIME_TYPE;
     }
 
     @Override
-    public Uri insert(Uri uri, ContentValues values) {
+    public Uri insert(@NonNull Uri uri, ContentValues values) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public int delete(Uri uri, String selection, String[] selectionArgs) {
+    public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+    public int update(@NonNull Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         throw new UnsupportedOperationException();
     }
 }

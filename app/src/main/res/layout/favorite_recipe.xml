@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.lubarov.daniel.mixologist.SquareFrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.lubarov.daniel.mixologist.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,6 +17,6 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="5dp"
         android:textColor="#FFFFFFFF"
-        android:textSize="22sp"/>
+        android:textSize="22sp" />
 
 </com.lubarov.daniel.mixologist.SquareFrameLayout>

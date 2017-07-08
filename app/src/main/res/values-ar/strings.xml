@@ -194,4 +194,10 @@
     <string name="pepper_long">"Pepper"</string>
     <string name="nutmeg_short">"nutmeg"</string>
     <string name="nutmeg_long">"Nutmeg"</string>
+    <string name="cocktail_photo">الكوكتيل، تصوير</string>
+    <string name="missing_ingredients">مفقود %s</string>
+    <string name="no_ingredients_warning">لم تقم بإضافة أي مكونات حتى الآن. يرجى استخدام علامة التبويب \"المكونات\" للإشارة إلى المكونات المتوفرة لديك.</string>
+    <string name="no_recipes_found">لم يتم العثور على وصفات.</string>
+    <string name="photo_credit">الصورة مجاملة من %s</string>
+    <string name="print">طباعة</string>
 </resources>

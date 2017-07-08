@@ -5,15 +5,19 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
 import com.lubarov.daniel.mixologist.R;
 import com.lubarov.daniel.mixologist.RecipeSearcher;
 import com.lubarov.daniel.mixologist.ThumbnailCache;
-import com.lubarov.daniel.mixologist.activity.ContainerFragment;
 import com.lubarov.daniel.mixologist.activity.ViewRecipeActivity;
 import com.lubarov.daniel.mixologist.events.EventListener;
 import com.lubarov.daniel.mixologist.events.GarnishOptionalEvent;
@@ -24,7 +28,11 @@ import com.lubarov.daniel.mixologist.model.RecipeComparator;
 import com.lubarov.daniel.mixologist.model.RecipeData;
 import com.lubarov.daniel.mixologist.storage.IngredientStorage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Browse all recipes, ordered starting with the ones that can be made with available ingredients.
@@ -49,13 +57,10 @@ public class AvailableRecipesFragment extends Fragment {
 
         ListView recipesView = (ListView) view.findViewById(R.id.recipes);
         recipesView.setAdapter(adapter = new Adapter());
-        recipesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), ViewRecipeActivity.class);
-                intent.putExtra("recipe", adapter.getItem(position));
-                startActivity(intent);
-            }
+        recipesView.setOnItemClickListener((parent, view1, position, id) -> {
+            Intent intent = new Intent(getContext(), ViewRecipeActivity.class);
+            intent.putExtra("recipe", adapter.getItem(position));
+            startActivity(intent);
         });
 
         IngredientEvent.MANAGER.addListener(ingredientEventListener);
@@ -72,12 +77,11 @@ public class AvailableRecipesFragment extends Fragment {
 
     private void updateIntro() {
         if (IngredientStorage.getAllIngredientsInStock(getActivity()).isEmpty()) {
-            introView.setText("You haven't added any ingredients yet. Please use the \"Inventory\" tab to indicate" +
-                    " which ingredients you have available.");
+            introView.setText(R.string.no_ingredients_warning);
             introView.setVisibility(View.VISIBLE);
-        }
-        else
+        } else {
             introView.setVisibility(View.GONE);
+        }
     }
 
     private class Adapter extends ArrayAdapter<Recipe> {
@@ -90,8 +94,9 @@ public class AvailableRecipesFragment extends Fragment {
             sort();
         }
 
+        @NonNull
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             View view = super.getView(position, convertView, parent);
             Recipe recipe = getItem(position);
             updateRecipeView(recipe, view);
@@ -113,26 +118,28 @@ public class AvailableRecipesFragment extends Fragment {
                 text2.setText(toCommaSeparatedList(recipe.getRequiredIngredients()));
                 text2.setTextColor(Color.BLACK);
             } else {
-                text2.setText("missing " + toCommaSeparatedList(missingIngredients));
+                text2.setText(getString(R.string.missing_ingredients, toCommaSeparatedList(missingIngredients)));
                 text2.setTextColor(Color.RED);
             }
         }
 
-        public void consume(IngredientEvent event) {
+        void consume(IngredientEvent event) {
             for (Recipe recipe : RecipeSearcher.findByIngredient(event.getIngredient())) {
                 View view = recipeViews.get(recipe);
-                if (view != null)
+                if (view != null) {
                     updateRecipeView(recipe, view);
+                }
             }
             sort();
         }
 
-        public void consume(GarnishOptionalEvent event) {
+        void consume(GarnishOptionalEvent event) {
             for (Recipe recipe : RecipeData.ALL_RECIPES) {
                 if (!recipe.getGarnishIngredients().isEmpty()) {
                     View view = recipeViews.get(recipe);
-                    if (view != null)
+                    if (view != null) {
                         updateRecipeView(recipe, view);
+                    }
                 }
             }
             sort();

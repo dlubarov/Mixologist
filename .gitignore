@@ -1,8 +1,10 @@
 .gradle/
 build/
 local.properties
+keystore.properties
 *.iml
 .idea/
+.DS_STORE
 
 # API key is sensitive
 fabric.properties

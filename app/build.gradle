@@ -1,6 +1,21 @@
 apply plugin: 'com.android.application'
 apply plugin: 'io.fabric'
 
+allprojects {
+    afterEvaluate { project ->
+        def propsFile = rootProject.file('keystore.properties')
+
+        if (propsFile.exists()) {
+            def props = new Properties()
+            props.load(new FileInputStream(propsFile))
+            android.signingConfigs.release.storeFile = file(props['storeFile'])
+            android.signingConfigs.release.storePassword = props['storePassword']
+            android.signingConfigs.release.keyAlias = props['keyAlias']
+            android.signingConfigs.release.keyPassword = props['keyPassword']
+        }
+    }
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "26.0.0"
@@ -11,33 +26,24 @@ android {
         versionCode 6
         versionName "1.5"
         testInstrumentationRunner 'android.support.test.runner.AndroidJunitRunner'
+        jackOptions {
+            enabled true
+        }
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     signingConfigs {
-        /*debug {
-            storeFile file("debug.keystore")
-        }*/
-
-        /*release {
-            storeFile file("/Users/dlubarov/dlubarov.jks")
-            // TODO: hack
-            storePassword new String(System.console() ? System.console().readPassword("\nEnter keystore password: ") : new char[0])
-            keyAlias "dlubarov"
-            // TODO: hack
-            keyPassword new String(System.console() ? System.console().readPassword("\nEnter key password: ") : new char[0])
-        }*/
+        release {
+        }
     }
 
     buildTypes {
         release {
-            //signingConfig signingConfigs.release
-            //debuggable false
-            //zipAlign true
+            signingConfig signingConfigs.release
         }
     }
 }

@@ -3,6 +3,7 @@ package com.lubarov.daniel.mixologist.model;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import com.lubarov.daniel.mixologist.storage.IngredientStorage;
 import com.lubarov.daniel.mixologist.storage.PreferencesStorage;
 

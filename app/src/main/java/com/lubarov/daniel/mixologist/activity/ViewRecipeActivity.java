@@ -1,5 +1,7 @@
 package com.lubarov.daniel.mixologist.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -40,6 +42,12 @@ public class ViewRecipeActivity extends AppCompatActivity {
     private final FavoriteEventListener favoriteEventListener = new FavoriteEventListener();
     private final PreferredUnitEventListener preferredUnitEventListener = new PreferredUnitEventListener();
 
+    public static Intent getIntent(Context context, Recipe recipe) {
+        Intent intent = new Intent(context, ViewRecipeActivity.class);
+        intent.putExtra("recipe", recipe);
+        return intent;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +57,7 @@ public class ViewRecipeActivity extends AppCompatActivity {
             throw new IllegalStateException("ViewRecipeActivity created without recipe extra");
         }
 
-        setContentView(R.layout.view_recipe_activity_layout);
+        setContentView(R.layout.view_recipe_activity);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         myToolbar.setTitle(recipe.getName());
         setSupportActionBar(myToolbar);
@@ -65,7 +73,7 @@ public class ViewRecipeActivity extends AppCompatActivity {
 
         TextView attributionView = (TextView) findViewById(R.id.photo_attribution);
         if (recipe.getImageAttribution() != null) {
-            attributionView.setText("Photo courtesy of " + recipe.getImageAttribution());
+            attributionView.setText(getString(R.string.photo_credit, recipe.getImageAttribution()));
         } else {
             attributionView.setVisibility(View.GONE);
         }
@@ -150,8 +158,8 @@ public class ViewRecipeActivity extends AppCompatActivity {
 
     private void updateFavoriteIcon(boolean isFavorite) {
         int resId = isFavorite
-                ? R.drawable.btn_star_on
-                : R.drawable.btn_star_off;
+                ? R.drawable.ic_favorite_black_24dp
+                : R.drawable.ic_favorite_border_black_24dp;
         favoriteButton.setIcon(resId);
     }
 

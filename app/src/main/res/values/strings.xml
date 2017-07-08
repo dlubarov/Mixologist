@@ -20,6 +20,10 @@
     <string name="ounces">ounces (oz)</string>
     <string name="garnish_optional">Treat garnish as optional</string>
     <string name="cocktail_photo">cocktail photograph</string>
+    <string name="no_recipes_found">No recipes found.</string>
+    <string name="no_ingredients_warning">You haven\'t added any ingredients yet. Please use the \"Ingredients\" tab to indicate which ingredients you have available.</string>
+    <string name="missing_ingredients">missing %s</string>
+    <string name="photo_credit">Photo courtesy of %s</string>
 
     <!-- Ingredients. -->
     <string name="absinthe_short">absinthe</string>

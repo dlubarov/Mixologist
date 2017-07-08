@@ -194,4 +194,10 @@
     <string name="pepper_long">"Pepper"</string>
     <string name="nutmeg_short">"nutmeg"</string>
     <string name="nutmeg_long">"Nutmeg"</string>
+    <string name="cocktail_photo">fotografia de coquetel</string>
+    <string name="missing_ingredients">Falta %s</string>
+    <string name="no_ingredients_warning">Ainda não adicionou nenhum ingrediente. Use a guia \"Ingredientes\" para indicar quais os ingredientes que você possui.</string>
+    <string name="no_recipes_found">Nenhuma receita encontrada.</string>
+    <string name="photo_credit">Foto cortesia de %s</string>
+    <string name="print">Impressão</string>
 </resources>

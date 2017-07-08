@@ -1,8 +1,10 @@
 package com.lubarov.daniel.mixologist.quantities;
 
 import android.content.Context;
+
 import com.lubarov.daniel.mixologist.storage.PreferencesStorage;
 
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,7 +18,7 @@ public class UnitConverter {
             Unit unit = Unit.valueOf(matcher.group(2).toUpperCase());
             Quantity quantity = Quantity.from(amount, unit);
             Unit preferredUnit = PreferencesStorage.getPreferredUnit(context);
-            return matcher.replaceFirst(String.format("%.1f %s ",
+            return matcher.replaceFirst(String.format(Locale.getDefault(), "%.1f %s ",
                     quantity.get(preferredUnit), preferredUnit.name().toLowerCase()));
         }
 

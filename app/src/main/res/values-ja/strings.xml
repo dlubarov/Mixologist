@@ -194,4 +194,10 @@
     <string name="pepper_long">"コショウ"</string>
     <string name="nutmeg_short">"ナツメグ"</string>
     <string name="nutmeg_long">"ナツメグ"</string>
+    <string name="cocktail_photo">カクテル写真</string>
+    <string name="missing_ingredients">%sがありません</string>
+    <string name="no_ingredients_warning">まだ成分を追加していません。 「成分」タブを使用して、使用可能な成分を示してください。</string>
+    <string name="no_recipes_found">レシピは見つかりませんでした。</string>
+    <string name="photo_credit">写真提供：%s</string>
+    <string name="print">印刷</string>
 </resources>

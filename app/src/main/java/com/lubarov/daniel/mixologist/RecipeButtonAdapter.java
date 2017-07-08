@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.lubarov.daniel.mixologist.model.Recipe;
 
 import java.util.List;
@@ -22,7 +23,13 @@ public class RecipeButtonAdapter extends ArrayAdapter<Recipe> {
     @NonNull
     @Override
     public View getView(final int position, View convertView, @NonNull ViewGroup parent) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.favorite_recipe, null);
+        View view;
+        if (convertView != null) {
+            view = convertView;
+        } else {
+            view = LayoutInflater.from(getContext()).inflate(R.layout.favorite_recipe, null);
+        }
+
         Recipe recipe = RecipeButtonAdapter.this.getItem(position);
         Bitmap thumbnail = ThumbnailCache.LARGE.getThumbnail(view.getResources(), recipe.getImageResource());
 

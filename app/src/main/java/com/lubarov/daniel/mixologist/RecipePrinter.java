@@ -5,6 +5,8 @@ import android.os.Build;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
+import android.util.Log;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -23,25 +25,29 @@ public class RecipePrinter {
      * Holds references to WebViews simply to prevent them from being garbage collected.
      * See https://developer.android.com/training/printing/html-docs.html
      */
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     private static final Set<WebView> activeWebViews = new HashSet<>();
 
     public static void print(final Recipe recipe, final Context context) {
+        Log.i(TAG, "Printing recipe: " + recipe.getName());
         String html = getHtml(recipe);
 
         final WebView webView = new WebView(context);
         webView.setWebViewClient(new WebViewClient() {
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
                 return false;
             }
 
             @Override
-            public void onPageFinished(WebView _webView, String url) {
+            public void onPageFinished(WebView view, String url) {
                 PrintManager printManager = (PrintManager) context.getSystemService(Context.PRINT_SERVICE);
 
                 PrintDocumentAdapter printAdapter;
                 if (Build.VERSION.SDK_INT >= 21) {
                     printAdapter = webView.createPrintDocumentAdapter(recipe.getName());
                 } else {
+                    //noinspection deprecation
                     printAdapter = webView.createPrintDocumentAdapter();
                 }
 

@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.lubarov.daniel.mixologist.GridSizer;
@@ -20,7 +19,6 @@ import com.lubarov.daniel.mixologist.storage.FavoritesStorage;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -37,21 +35,13 @@ public class BrowseFavoritesFragment extends Fragment implements EventListener<F
         recipeGrid.setNumColumns(GridSizer.getDesiredNumCols(getActivity().getWindowManager()));
 
         final List<Recipe> recipesToDisplay = new ArrayList<>(FavoritesStorage.getAllFavorites(getActivity()));
-        Collections.sort(recipesToDisplay, new Comparator<Recipe>() {
-            @Override
-            public int compare(Recipe a, Recipe b) {
-                return a.getName().compareTo(b.getName());
-            }
-        });
+        Collections.sort(recipesToDisplay, (a, b) -> a.getName().compareTo(b.getName()));
 
         recipeGrid.setAdapter(adapter = new RecipeButtonAdapter(getActivity(), recipesToDisplay));
-        recipeGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), ViewRecipeActivity.class);
-                intent.putExtra("recipe", adapter.getItem(position));
-                startActivity(intent);
-            }
+        recipeGrid.setOnItemClickListener((parent, view1, position, id) -> {
+            Intent intent = new Intent(getContext(), ViewRecipeActivity.class);
+            intent.putExtra("recipe", adapter.getItem(position));
+            startActivity(intent);
         });
 
         FavoriteEvent.MANAGER.addListener(this);

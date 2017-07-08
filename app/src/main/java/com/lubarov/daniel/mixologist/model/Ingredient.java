@@ -1,6 +1,7 @@
 package com.lubarov.daniel.mixologist.model;
 
 import android.content.Context;
+
 import com.lubarov.daniel.mixologist.R;
 
 import java.util.Collections;

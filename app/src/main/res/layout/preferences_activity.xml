@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/unit_of_measurement"
+            style="@android:style/TextAppearance.Medium" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radio_cl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/centilitres"
+                android:onClick="onRadioButtonClicked"
+                style="@android:style/TextAppearance.Small" />
+
+            <RadioButton
+                android:id="@+id/radio_ml"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/millilitres"
+                android:onClick="onRadioButtonClicked"
+                style="@android:style/TextAppearance.Small" />
+
+            <RadioButton
+                android:id="@+id/radio_oz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ounces"
+                android:onClick="onRadioButtonClicked"
+                style="@android:style/TextAppearance.Small" />
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/checkbox_garnish"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/garnish_optional"
+            android:onClick="onCheckboxClicked" />
+
+    </LinearLayout>
+
+</LinearLayout>

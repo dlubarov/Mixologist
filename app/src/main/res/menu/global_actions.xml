@@ -4,13 +4,13 @@
 
     <item android:id="@+id/action_search"
           android:title="@string/search"
-          android:icon="@drawable/ic_action_search"
+          android:icon="@drawable/ic_search_black_24dp"
           mixologist:showAsAction="always|collapseActionView"
           mixologist:actionViewClass="android.support.v7.widget.SearchView" />
 
     <item android:id="@+id/action_preferences"
-          android:title="Preferences"
-          android:icon="@drawable/ic_menu_preferences"
+          android:title="@string/preferences"
+          android:icon="@drawable/ic_settings_black_24dp"
           mixologist:showAsAction="ifRoom"/>
 
 </menu>

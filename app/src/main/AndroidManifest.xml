@@ -5,9 +5,6 @@
         android:installLocation="auto">
     <uses-permission android:name="android.permission.INTERNET"/>
 
-    <!-- Gradle is supposed to generate these, but it doesn't seem to work. -->
-    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="19" />
-
     <application
             android:allowBackup="true"
             android:icon="@drawable/launcher_icon"
@@ -27,6 +24,8 @@
         <activity android:name=".activity.ViewRecipeActivity" />
 
         <activity android:name=".activity.PreferencesActivity" />
+
+        <activity android:name=".activity.ViewSearchResultsActivity" />
 
         <provider
                 android:authorities="com.lubarov.daniel.mixologist.RecipeContentProvider"

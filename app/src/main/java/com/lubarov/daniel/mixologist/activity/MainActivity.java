@@ -18,7 +18,6 @@ import android.view.MenuItem;
 
 import com.crashlytics.android.Crashlytics;
 import com.lubarov.daniel.mixologist.R;
-import com.lubarov.daniel.mixologist.fragments.ViewSearchResultsFragment;
 import com.lubarov.daniel.mixologist.model.Recipe;
 import com.lubarov.daniel.mixologist.model.RecipeData;
 import com.lubarov.daniel.mixologist.reviewnagger.NagDecider;
@@ -27,19 +26,17 @@ import com.lubarov.daniel.mixologist.reviewnagger.ReviewDialogFragment;
 import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
-    private ThePagerAdapter pagerAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Fabric.with(this, new Crashlytics());
 
-        setContentView(R.layout.main_activity_layout);
+        setContentView(R.layout.main_activity);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        pagerAdapter = new ThePagerAdapter(getSupportFragmentManager());
+        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        ThePagerAdapter pagerAdapter = new ThePagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(pagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -51,12 +48,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (NagDecider.shouldNag(this))
             new ReviewDialogFragment().show(getSupportFragmentManager(), "rate");
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (!getFocusedContainer().popFragment())
-            super.onBackPressed();
     }
 
     @Override
@@ -93,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                getFocusedContainer().pushFragment(ViewSearchResultsFragment.create(query));
+                startActivity(ViewSearchResultsActivity.getIntent(MainActivity.this, query));
                 MenuItemCompat.collapseActionView(searchItem);
                 return true;
             }
@@ -115,10 +106,5 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private ContainerFragment getFocusedContainer() {
-        ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        return (ContainerFragment) pagerAdapter.getRegisteredFragment(viewPager.getCurrentItem());
     }
 }

@@ -3,38 +3,28 @@ package com.lubarov.daniel.mixologist.activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.SparseArray;
-import android.view.ViewGroup;
+
 import com.lubarov.daniel.mixologist.fragments.AvailableRecipesFragment;
 import com.lubarov.daniel.mixologist.fragments.BrowseFavoritesFragment;
 import com.lubarov.daniel.mixologist.fragments.ManageIngredientsFragment;
 
-import java.lang.ref.WeakReference;
-
 class ThePagerAdapter extends FragmentPagerAdapter {
-    private final SparseArray<WeakReference<ContainerFragment>> registeredFragments = new SparseArray<>();
-
     ThePagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }
 
     @Override
     public Fragment getItem(int position) {
-        Class<? extends Fragment> contentClass;
         switch (position) {
             case 0:
-                contentClass = ManageIngredientsFragment.class;
-                break;
+                return new ManageIngredientsFragment();
             case 1:
-                contentClass = AvailableRecipesFragment.class;
-                break;
+                return new AvailableRecipesFragment();
             case 2:
-                contentClass = BrowseFavoritesFragment.class;
-                break;
+                return new BrowseFavoritesFragment();
             default:
-                throw new IllegalArgumentException("Unexpected position: " + position);
+                throw new IllegalArgumentException("Unexpected tab position: " + position);
         }
-        return ContainerFragment.create(contentClass);
     }
 
     @Override
@@ -54,23 +44,5 @@ class ThePagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return 3;
-    }
-
-    @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        ContainerFragment fragment = (ContainerFragment) super.instantiateItem(container, position);
-        registeredFragments.put(position, new WeakReference<>(fragment));
-        return fragment;
-    }
-
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        registeredFragments.remove(position);
-        super.destroyItem(container, position, object);
-    }
-
-    Fragment getRegisteredFragment(int position) {
-        WeakReference<ContainerFragment> container = registeredFragments.get(position);
-        return container != null ? container.get() : null;
     }
 }
