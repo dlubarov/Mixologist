@@ -27,7 +27,7 @@ public class RecipeButtonAdapter extends ArrayAdapter<Recipe> {
         if (convertView != null) {
             view = convertView;
         } else {
-            view = LayoutInflater.from(getContext()).inflate(R.layout.favorite_recipe, null);
+            view = LayoutInflater.from(getContext()).inflate(R.layout.favorite_recipe, parent, false);
         }
 
         Recipe recipe = RecipeButtonAdapter.this.getItem(position);
