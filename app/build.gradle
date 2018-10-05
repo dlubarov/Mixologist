@@ -17,18 +17,15 @@ allprojects {
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.0"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 25
-        versionCode 6
-        versionName "1.5"
+        targetSdkVersion 28
+        versionCode 7
+        versionName "1.6"
         testInstrumentationRunner 'android.support.test.runner.AndroidJunitRunner'
-        jackOptions {
-            enabled true
-        }
     }
 
     compileOptions {
